@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory | DevTools Course</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+<div class="page-header">
+  <p class="lesson-number">Lesson 10</p>
+  <h1>🧠 Memory Tab</h1>
+</div>
+
+<div class="card">
+<h2>What is Browser Memory?</h2>
+<p>
+Memory is where the browser stores JavaScript objects, variables, and data while a page is open.
+When memory is not released properly, the page becomes slower over time.
+</p>
+
+<div class="info-box">
+<p>
+The Memory tab helps you understand how much memory your page uses and whether objects are being cleaned up correctly.
+</p>
+</div>
+</div>
+
+<div class="demo-section">
+<div class="demo-title">Practical Demo</div>
+
+<button class="btn-danger" onclick="leakMemory()">Create Memory Objects</button>
+<button class="btn-secondary" onclick="clearMemory()">Clear References</button>
+
+<p id="memory-status" style="margin-top:15px;"></p>
+</div>
+
+<div class="instructions">
+<h4>Try This in DevTools</h4>
+<ol>
+<li>Open DevTools and go to the Memory tab</li>
+<li>Click Heap Snapshot</li>
+<li>Click Create Memory Objects several times</li>
+<li>Take another snapshot</li>
+<li>Compare object counts</li>
+</ol>
+</div>
+
+<div class="warning-box">
+<p>
+Memory leaks happen when JavaScript keeps references to objects that are no longer needed.
+</p>
+</div>
+
+<div id="navigation"></div>
+</div>
+
+<script>
+let memoryLeak = [];
+
+function leakMemory() {
+  for (let i = 0; i < 10000; i++) {
+    memoryLeak.push({ index: i, text: "Leaking memory" });
+  }
+  document.getElementById("memory-status").textContent = 
+    "Memory objects created. Take a heap snapshot now.";
+}
+
+function clearMemory() {
+  memoryLeak = [];
+  document.getElementById("memory-status").textContent = 
+    "References cleared. Take another snapshot.";
+}
+</script>
+
+<script src="../js/navigation.js"></script>
+</body>
+</html>

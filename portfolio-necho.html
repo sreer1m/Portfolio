@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Necho: Sign-Speech Communication Platform - Sree Ram S</title>
+  <meta name="description" content="Necho is a two-way, multilingual communication platform that translates sign language into speech and speech into sign language in real time." />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>(function(){document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    .necho-hero-banner {
+      border-radius: var(--radius-lg);
+      padding: 64px 52px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #533483 100%);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .necho-hero-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(139,92,246,0.25) 0%, transparent 60%);
+    }
+    .necho-hero-banner > * { position: relative; z-index: 1; }
+    .necho-hero-banner .cat-badge {
+      display: inline-flex;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+    }
+    .necho-hero-banner h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 16px;
+      line-height: 1.1;
+    }
+    .necho-hero-banner p {
+      color: rgba(255,255,255,0.75);
+      font-size: 17px;
+      max-width: 640px;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .necho-content h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 40px 0 12px;
+    }
+    .necho-content h3:first-child { margin-top: 0; }
+    .necho-content p {
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin: 0 0 16px;
+    }
+    .necho-content ul {
+      padding-left: 0;
+      list-style: none;
+      margin: 0 0 16px;
+    }
+    .necho-content ul li {
+      position: relative;
+      padding-left: 22px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .necho-content ul li::before {
+      content: '\2022';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .necho-feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0 32px;
+    }
+    .necho-feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .necho-feature-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 8px;
+    }
+    .necho-feature-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .necho-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+    .necho-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .necho-link-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
+    .necho-link-btn.accent {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .necho-link-btn.accent:hover { opacity: 0.88; }
+    .necho-tag {
+      display: inline-flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin: 0 4px 6px 0;
+    }
+    @media (max-width: 600px) {
+      .necho-feature-grid { grid-template-columns: 1fr; }
+      .necho-hero-banner { padding: 36px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <nav>
+          <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-ghost btn-sm" href="index.html#contact">Contact Me</a>
+          <button class="hamburger" id="menuBtn" aria-label="Open menu">&#9776;</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div style="height:90px"></div>
+
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">&#8250;</span>
+      <a href="portfolio.html">Portfolio</a>
+      <span class="sep">&#8250;</span>
+      <strong>Necho</strong>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="necho-hero-banner reveal">
+      <span class="cat-badge">Product Case Study</span>
+      <h1>Necho</h1>
+      <p>A two-way communication platform that turns signs into words and words into signs, so deaf and hearing people can talk to each other without waiting for an interpreter.</p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="project-detail-grid">
+
+      <!-- LEFT: Content -->
+      <div class="necho-content">
+
+        <h3>The Real Problem</h3>
+        <p>Hundreds of millions of people around the world are deaf, hard of hearing, or speech impaired. Most of them rely on sign language to communicate. But almost every communication channel we use today, from phone calls to video meetings to ordering food at a counter, is designed for spoken language. That leaves a massive gap.</p>
+        <p>Here is what everyday life looks like for someone who is deaf: you walk into a hospital. The receptionist does not know sign language. There is no interpreter available. You are left trying to type on your phone and hope the other person follows. Now imagine that happening at a bank, a school, a job interview, a police station, or just a coffee shop.</p>
+        <p>The existing tools also fail on multiple fronts. Most handle one direction only, usually sign to text. Most only support English. Almost none handle the full loop: sign to speech AND speech to sign. Most require constant internet. Most are expensive. Necho exists to close that gap.</p>
+
+        <hr class="necho-divider">
+
+        <h3>What Necho Does</h3>
+        <p>Necho is built around one simple idea: both people in a conversation should be able to stay in their most natural communication mode.</p>
+        <p>If you sign, Necho reads your gestures through a camera and converts them into text or speech for the other person. If you speak, Necho captures your voice and converts it into sign language output for the signer. Two directions. Real time. No interpreter needed for everyday situations.</p>
+
+        <div class="necho-feature-grid">
+          <div class="necho-feature-card">
+            <h4>Works Both Ways</h4>
+            <p>Most tools are one-way. Necho closes the full communication loop. Sign to speech and speech to sign.</p>
+          </div>
+          <div class="necho-feature-card">
+            <h4>Multiple Sign Languages</h4>
+            <p>Designed for ISL, ASL, BSL, and more. Because sign language is not universal.</p>
+          </div>
+          <div class="necho-feature-card">
+            <h4>Works Offline</h4>
+            <p>Core features run directly on the device. No WiFi needed for a conversation. Download language packs.</p>
+          </div>
+          <div class="necho-feature-card">
+            <h4>Platform and APIs</h4>
+            <p>Plug into video calls, websites, and support tools. Any digital experience can become accessible.</p>
+          </div>
+        </div>
+
+        <hr class="necho-divider">
+
+        <h3>How It All Fits Together</h3>
+
+        <p><strong>Mobile App</strong><br>The primary interface. Use your phone camera to capture signs and get instant text or speech output. Speak into the mic and see the translation appear as sign output. Works offline for key languages. Simple enough to use at a shop counter, in a cab, or at home.</p>
+
+        <p><strong>Web App</strong><br>For desktops and laptops. Perfect for classrooms, shared devices, and institutions. Uses the webcam for sign capture and displays translations on a larger screen. Connects with browser-based tools like video calls and learning platforms.</p>
+
+        <p><strong>Cloud Platform and APIs</strong><br>The engine behind the scenes. Handles heavier AI processing, stores anonymized data for improving accuracy, and provides APIs so developers can build Necho-powered features into their own apps. If a hospital wants sign language support in their patient portal, they do not need to build the AI. They just connect to Necho.</p>
+
+        <p><strong>Smart Specs (Future)</strong><br>Glasses with a small camera, a display in the lens, and a speaker. Signs are captured and translated in real time, with text appearing right in your field of view. Hands-free, heads-up, natural. This is where the product is headed.</p>
+
+        <hr class="necho-divider">
+
+        <h3>Who It Is For</h3>
+        <ul>
+          <li><strong>Deaf, hard-of-hearing, and speech-impaired individuals</strong> who want to communicate freely in everyday situations, at work, in school, at the doctor, or just ordering lunch.</li>
+          <li><strong>Schools and universities</strong> making classrooms genuinely inclusive instead of just ticking a compliance box.</li>
+          <li><strong>Healthcare providers</strong> ensuring clear communication with patients when misunderstanding is not an option.</li>
+          <li><strong>Enterprises and customer support</strong> serving deaf customers and employees without depending on interpreter availability.</li>
+          <li><strong>Families and caregivers</strong> for smoother communication at home, where it matters most.</li>
+          <li><strong>Developers</strong> building sign language support into their own products through Necho's APIs instead of starting from zero.</li>
+        </ul>
+
+        <hr class="necho-divider">
+
+        <h3>Marketing and Growth Strategy</h3>
+        <p>Beyond the product, I worked on the go-to-market and digital marketing strategy for Necho. The goal was to reach the right people without burning money on broad campaigns that miss the community entirely.</p>
+        <ul>
+          <li><strong>SEO:</strong> Content targeting deaf community search terms, sign language resources, and accessibility tool queries. Long-tail keywords around specific use cases (hospital sign language app, ISL translator, etc.).</li>
+          <li><strong>Community-led growth:</strong> Partnering with deaf community organizations, schools for the deaf, and disability advocacy groups to build trust and drive organic adoption.</li>
+          <li><strong>Social media:</strong> Short-form video content demonstrating real use cases. Sign language creators and disability advocates as authentic voices, not paid endorsers.</li>
+          <li><strong>B2B outreach:</strong> Direct marketing to HR teams, hospital administrators, and school principals around accessibility compliance and inclusion ROI.</li>
+          <li><strong>App store optimization:</strong> Keyword-optimized listings for both the mobile app and web app, with user reviews from early community members.</li>
+        </ul>
+
+        <hr class="necho-divider">
+
+        <h3>How I Thought About This</h3>
+        <p><strong>Accessibility first, not as an afterthought.</strong> The entire interface was designed with accessibility as the starting point. Not a feature added later.</p>
+        <p><strong>Two-way equality.</strong> Necho does not treat sign language as something that needs to be "translated up" into spoken language. Both modes are equally valid.</p>
+        <p><strong>Built with the community, not just for them.</strong> The deaf community and speech-impaired users are collaborators in this project, not just end users.</p>
+        <p><strong>Affordable and inclusive.</strong> A freemium model, low subscription prices, and institutional partnerships so this does not become another tool only wealthy users can access.</p>
+
+        <hr class="necho-divider">
+
+        <h3>How It Sustains Itself</h3>
+        <p>Necho follows a freemium approach. Basic features are free because reducing barriers to adoption matters more than gating everything behind a paywall. Affordable subscriptions unlock enhanced features for individuals. Licensing plans serve schools, NGOs, hospitals, and enterprises at scale. API licensing makes Necho accessible as infrastructure for developers.</p>
+        <p>The goal is sustainability without exclusion. Make it easy to start, fair to pay for, and valuable enough that people and organizations want to invest in it.</p>
+
+        <hr class="necho-divider">
+
+        <h3>What This Project Taught Me</h3>
+        <p>Necho started as a question: why is it still so hard for deaf and hearing people to have a simple conversation in 2025?</p>
+        <p>I worked on the product thinking, user research, and go-to-market strategy. I mapped out the problem space, defined the user personas, structured the feature set, and thought through how the business model needs to work for a product that serves people who are often priced out of the tools meant to help them.</p>
+        <p>What I learned goes beyond marketing. The best products do not just solve a technical problem. They solve a human one. Accessibility is not a feature you bolt on at the end. It is a philosophy that shapes every decision from day one. And if you want to build something truly inclusive, you have to listen to the people you are building for, not just assume you know what they need.</p>
+        <p>This project made me a better thinker, a better researcher, and honestly, a more empathetic person.</p>
+
+        <hr class="necho-divider">
+
+        <h3>Where This Goes</h3>
+        <p style="font-style:italic; font-size:18px; color:var(--text-primary); font-weight:600;">"Bridging Silence. Connecting Worlds."</p>
+        <p>A world where a deaf student can sit in any classroom and follow along without depending on an interpreter. Where a speech-impaired person can walk into any hospital and communicate clearly. Where conversations between signing and speaking people feel as natural and immediate as any other conversation. The technology exists. The need is massive. Someone needs to build it right.</p>
+
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <div>
+        <div class="project-sidebar-card">
+          <h4>Project Details</h4>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-icon">&#127919;</div>
+            <div>
+              <div class="sidebar-stat-key">My Role</div>
+              <div class="sidebar-stat-val">Product Strategy, GTM, Research</div>
+            </div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-icon">&#127760;</div>
+            <div>
+              <div class="sidebar-stat-key">Type</div>
+              <div class="sidebar-stat-val">Two-way Communication Platform</div>
+            </div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-icon">&#128101;</div>
+            <div>
+              <div class="sidebar-stat-key">Target</div>
+              <div class="sidebar-stat-val">Deaf, HoH, Speech-impaired</div>
+            </div>
+          </div>
+          <div class="sidebar-stat">
+            <div class="sidebar-stat-icon">&#128736;</div>
+            <div>
+              <div class="sidebar-stat-key">Marketing</div>
+              <div class="sidebar-stat-val">SEO, Community, B2B, Social</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Links -->
+        <div class="project-sidebar-card" style="margin-top:20px;">
+          <h4>Check out the website</h4>
+          <a href="https://necho.in" class="necho-link-btn">
+            &#127760; Open Web App
+          </a>
+        </div>
+
+        <!-- Tags -->
+        <div class="project-sidebar-card" style="margin-top:20px;">
+          <h4>Topics</h4>
+          <div style="margin-top:10px;">
+            <span class="necho-tag">Sign Language</span>
+            <span class="necho-tag">Accessibility</span>
+            <span class="necho-tag">AI / ML</span>
+            <span class="necho-tag">ISL</span>
+            <span class="necho-tag">ASL</span>
+            <span class="necho-tag">Product Strategy</span>
+            <span class="necho-tag">Go-to-Market</span>
+            <span class="necho-tag">SEO</span>
+            <span class="necho-tag">Digital Marketing</span>
+            <span class="necho-tag">Freemium</span>
+            <span class="necho-tag">B2B</span>
+            <span class="necho-tag">APIs</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="text-align:center;margin:60px 0 40px">
+      <a href="portfolio.html" class="btn btn-ghost">&#8592; Back to All Projects</a>
+    </div>
+
+  </div>
+
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+    <span class="icon-sun">&#9728;&#65039;</span>
+    <span class="icon-moon">&#127769;</span>
+  </button>
+  <button class="back-to-top" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>

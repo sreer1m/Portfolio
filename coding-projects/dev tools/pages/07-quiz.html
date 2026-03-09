@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quiz 7 – Sources Tab | DevTools Course</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --primary:#1a73e8;
+  --success:#0f9d58;
+  --danger:#d93025;
+  --gray:#5f6368;
+  --bg:#f8f9fa;
+  --white:#ffffff;
+  --radius:8px;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 20px;
+  color:#202124;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Header */
+.page-header {
+  background: var(--white);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  margin-bottom: 30px;
+  border-left: 5px solid var(--primary);
+}
+
+.lesson-number {
+  color: var(--gray);
+  font-size: .85em;
+  text-transform: uppercase;
+}
+
+/* Quiz */
+.quiz-container {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  margin-bottom: 40px;
+}
+
+.quiz-question {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quiz-option {
+  border: 2px solid #e0e0e0;
+  padding: 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: .2s;
+}
+
+.quiz-option:hover {
+  border-color: var(--primary);
+  transform: translateX(5px);
+}
+
+.option-letter {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: bold;
+}
+
+.quiz-option.correct {
+  background:#e8f5e9;
+  border-color: var(--success);
+}
+.quiz-option.correct .option-letter { background: var(--success); }
+
+.quiz-option.wrong {
+  background:#ffebee;
+  border-color: var(--danger);
+}
+.quiz-option.wrong .option-letter { background: var(--danger); }
+
+.quiz-option.disabled {
+  pointer-events: none;
+  opacity: .7;
+}
+
+.quiz-feedback {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: var(--radius);
+  display:none;
+}
+
+.quiz-feedback.correct {
+  background:#e8f5e9;
+  border:2px solid var(--success);
+  color:var(--success);
+}
+
+.quiz-feedback.wrong {
+  background:#ffebee;
+  border:2px solid var(--danger);
+  color:var(--danger);
+}
+
+/* Navigation */
+.nav-buttons {
+  display:flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.nav-buttons a {
+  text-decoration:none;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  font-weight:600;
+  text-align:center;
+  flex:1;
+}
+
+.btn-secondary {
+  background:#5f6368;
+  color:white;
+}
+
+.btn-primary {
+  background:var(--primary);
+  color:white;
+}
+
+/* Progress */
+.progress-bar {
+  height:8px;
+  background:#e0e0e0;
+  border-radius:4px;
+  overflow:hidden;
+  margin-top:25px;
+}
+
+.progress-fill {
+  height:100%;
+  width:38%;
+  background:var(--success);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="page-header">
+  <p class="lesson-number">Quiz 7</p>
+  <h1>Sources Tab Knowledge Check</h1>
+</div>
+
+<!-- QUESTION 1 -->
+<div class="quiz-container">
+  <div class="quiz-question">What is a breakpoint?</div>
+  <div class="quiz-options" data-correct="C">
+    <div class="quiz-option" data-answer="A">
+      <div class="option-letter">A</div> A point where code is permanently deleted
+    </div>
+    <div class="quiz-option" data-answer="B">
+      <div class="option-letter">B</div> An error in the code
+    </div>
+    <div class="quiz-option" data-answer="C">
+      <div class="option-letter">C</div> A marker that pauses code execution
+    </div>
+    <div class="quiz-option" data-answer="D">
+      <div class="option-letter">D</div> A way to speed up code
+    </div>
+  </div>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- QUESTION 2 -->
+<div class="quiz-container">
+  <div class="quiz-question">What does “Step Over (F10)” do?</div>
+  <div class="quiz-options" data-correct="B">
+    <div class="quiz-option" data-answer="A">
+      <div class="option-letter">A</div> Skips the entire function
+    </div>
+    <div class="quiz-option" data-answer="B">
+      <div class="option-letter">B</div> Executes the line and moves to next
+    </div>
+    <div class="quiz-option" data-answer="C">
+      <div class="option-letter">C</div> Goes inside function calls
+    </div>
+    <div class="quiz-option" data-answer="D">
+      <div class="option-letter">D</div> Resumes execution
+    </div>
+  </div>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- QUESTION 3 -->
+<div class="quiz-container">
+  <div class="quiz-question">What does the Call Stack show?</div>
+  <div class="quiz-options" data-correct="D">
+    <div class="quiz-option" data-answer="A">
+      <div class="option-letter">A</div> All variables
+    </div>
+    <div class="quiz-option" data-answer="B">
+      <div class="option-letter">B</div> Project files
+    </div>
+    <div class="quiz-option" data-answer="C">
+      <div class="option-letter">C</div> Network requests
+    </div>
+    <div class="quiz-option" data-answer="D">
+      <div class="option-letter">D</div> Function call sequence
+    </div>
+  </div>
+  <div class="quiz-feedback"></div>
+</div>
+
+<!-- NAV -->
+<div class="nav-buttons">
+  <a href="06-console-advanced.html" class="btn-secondary">
+    ← Previous: Console Advanced
+  </a>
+  <a href="08-network.html" class="btn-primary">
+    Next: Network Tab →
+  </a>
+</div>
+
+<div class="progress-bar">
+  <div class="progress-fill"></div>
+</div>
+
+<p style="text-align:center;color:var(--gray)">
+  Progress: 11 of 29 (38%)
+</p>
+
+</div>
+
+<script>
+let answered = 0;
+const total = 3;
+
+document.querySelectorAll('.quiz-option').forEach(option=>{
+  option.addEventListener('click',()=>{
+    const quiz = option.closest('.quiz-options');
+    if(quiz.classList.contains('done')) return;
+    quiz.classList.add('done');
+
+    const correct = quiz.dataset.correct;
+    const feedback = quiz.nextElementSibling;
+
+    quiz.querySelectorAll('.quiz-option').forEach(o=>{
+      o.classList.add('disabled');
+    });
+
+    if(option.dataset.answer === correct){
+      option.classList.add('correct');
+      feedback.className = 'quiz-feedback correct';
+      feedback.innerHTML = '✅ Correct! Well done.';
+      answered++;
+    } else {
+      option.classList.add('wrong');
+      feedback.className = 'quiz-feedback wrong';
+      feedback.innerHTML = '❌ Incorrect. Review this concept in the lesson.';
+    }
+
+    feedback.style.display = 'block';
+
+    if(answered === total){
+      setTimeout(()=>{
+        alert(`Quiz Complete!\nScore: ${answered}/${total}`);
+      },400);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

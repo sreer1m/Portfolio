@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz 11 | Application</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="container">
+<div id="quiz"></div>
+<div id="navigation"></div>
+</div>
+
+<script src="../js/quiz.js"></script>
+<script src="../js/navigation.js"></script>
+<script>
+window.quizData = {
+  question: "Which storage persists after page refresh?",
+  options: [
+    "sessionStorage",
+    "localStorage",
+    "JavaScript variables",
+    "Console memory"
+  ],
+  correctAnswer: 1,
+  explanation:
+    "localStorage persists even after refreshing or reopening the browser."
+};
+</script>
+
+</body>
+</html>

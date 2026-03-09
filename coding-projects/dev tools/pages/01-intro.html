@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: Introduction to DevTools</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <p class="lesson-number">Lesson 1 of 15</p>
+            <h1>🔍 Introduction to Chrome DevTools</h1>
+        </div>
+
+        <div class="card">
+            <h2>What Are Developer Tools?</h2>
+            <p><strong>Chrome DevTools</strong> (also called "Inspect Element" or just "DevTools") is a set of powerful tools built directly into your web browser. Think of it as an X-ray machine for websites, it lets you see and understand how any webpage is built.</p>
+            
+            <div class="info-box">
+                <h4>🎯 What You Can Do With DevTools:</h4>
+                <ul>
+                    <li>See the HTML code behind any website</li>
+                    <li>View and edit CSS styles in real-time</li>
+                    <li>Debug JavaScript code</li>
+                    <li>Monitor network requests</li>
+                    <li>Test website performance</li>
+                    <li>Check for security issues</li>
+                    <li>And much more!</li>
+                </ul>
+            </div>
+
+            <h3>Is This "Hacking"?</h3>
+            <p><strong>No!</strong> This is a common misconception. Using DevTools is:</p>
+            <ul>
+                <li>✅ <strong>Completely legal</strong> and built into every browser</li>
+                <li>✅ <strong>Only affects your computer</strong> changes you make are temporary and local</li>
+                <li>✅ <strong>Used by professionals</strong> every day (web developers, designers, testers)</li>
+                <li>✅ <strong>A learning tool</strong> to understand how websites work</li>
+            </ul>
+
+            <div class="warning-box">
+                <h4>⚠️ Important Note:</h4>
+                <p>Any changes you make with DevTools are <strong>temporary</strong> and only visible on your screen. If you refresh the page, everything goes back to normal. You cannot permanently change someone else's website, only the version you're viewing in your browser.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>How to Open DevTools</h2>
+            <p>There are several ways to open Chrome DevTools. Try each one:</p>
+            
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try It Now: Open DevTools</div>
+                
+                <h4>Method 1: Keyboard Shortcut (Fastest)</h4>
+                <ul>
+                    <li><strong>Windows/Linux:</strong> Press <code>F12</code> or <code>Ctrl + Shift + I</code></li>
+                    <li><strong>Mac:</strong> Press <code>Cmd + Option + I</code></li>
+                </ul>
+
+                <h4>Method 2: Right-Click Menu</h4>
+                <ol>
+                    <li>Right-click anywhere on this page</li>
+                    <li>Select "Inspect" from the menu</li>
+                </ol>
+
+                <h4>Method 3: Chrome Menu</h4>
+                <ol>
+                    <li>Click the three dots (⋮) in the top-right corner of Chrome</li>
+                    <li>Go to "More tools" → "Developer tools"</li>
+                </ol>
+            </div>
+
+            <div class="instructions">
+                <h4>📋 Your First Task:</h4>
+                <ol>
+                    <li>Open DevTools using any method above</li>
+                    <li>Look at the different tabs at the top (Elements, Console, Sources, etc.)</li>
+                    <li>Try clicking on different tabs to see what's inside</li>
+                    <li>Notice that DevTools can appear at the bottom, right, or as a separate window</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>DevTools Layout</h2>
+            <p>DevTools can be positioned in different ways. You can change its position by clicking the three dots (⋮) in DevTools and selecting your preferred dock side:</p>
+            
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">⬇️</div>
+                    <h3>Dock to Bottom</h3>
+                    <p>DevTools appear below the webpage</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">➡️</div>
+                    <h3>Dock to Right</h3>
+                    <p>DevTools appear on the right side</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🪟</div>
+                    <h3>Separate Window</h3>
+                    <p>DevTools open in their own window</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>The Main Tabs</h2>
+            <p>DevTools has many tabs, each serving a specific purpose. Here's a quick overview of what we'll learn:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tab</th>
+                        <th>Purpose</th>
+                        <th>What You'll Learn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Elements</strong></td>
+                        <td>View and edit HTML/CSS</td>
+                        <td>Inspect page structure and styles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Console</strong></td>
+                        <td>Run JavaScript and see errors</td>
+                        <td>Debug code and interact with pages</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sources</strong></td>
+                        <td>View page files and debug code</td>
+                        <td>Set breakpoints and step through code</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network</strong></td>
+                        <td>Monitor network requests</td>
+                        <td>See what data is being sent/received</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance</strong></td>
+                        <td>Analyze page speed</td>
+                        <td>Find performance bottlenecks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Memory</strong></td>
+                        <td>Track memory usage</td>
+                        <td>Find memory leaks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Application</strong></td>
+                        <td>View stored data</td>
+                        <td>Inspect cookies, storage, cache</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>Check security status</td>
+                        <td>Verify HTTPS and certificates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lighthouse</strong></td>
+                        <td>Audit website quality</td>
+                        <td>Test performance, accessibility, SEO</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>Practice: Explore This Page</h2>
+            
+            <div class="demo-section">
+                <div class="demo-title">🎮 Interactive Demo</div>
+                
+                <div class="demo-box" id="demo-box">
+                    <h3>This is a Demo Box</h3>
+                    <p>Right-click on this box and select "Inspect"</p>
+                </div>
+
+                <div class="instructions">
+                    <h4>📋 Try These Steps:</h4>
+                    <ol>
+                        <li>Right-click on the colorful box above</li>
+                        <li>Click "Inspect" from the menu</li>
+                        <li>DevTools will open and highlight the HTML code for that box</li>
+                        <li>Look for the <code>&lt;div class="demo-box"&gt;</code> element</li>
+                        <li>Notice how the box is highlighted on the page when you hover over its code</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Pro Tip:</h4>
+                <p>You can inspect <strong>any element</strong> on <strong>any website</strong> this way. Try it on your favorite websites after this seminar!</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>DevTools is a built-in browser feature for inspecting and debugging websites</li>
+                <li>It's completely legal and safe to use</li>
+                <li>Changes you make are temporary and local to your browser</li>
+                <li>Press <code>F12</code> to open DevTools quickly</li>
+                <li>DevTools has many tabs, each with specific functions</li>
+                <li>You can inspect any element by right-clicking and selecting "Inspect"</li>
+            </ul>
+        </div>
+
+        <div id="navigation"></div>
+    </div>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

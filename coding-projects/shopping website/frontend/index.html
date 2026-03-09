@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Moon & Maple Co</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <header class="header">
+    <h1>Moon & Maple Co</h1>
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <div class="cart-btn" id="openCart">
+      🛒 <span id="cartCount">0</span> | Rs. <span id="cartTotal">0</span>
+    </div>
+  </header>
+
+  <section class="filters">
+    <button data-cat="all" class="active">All</button>
+    <button data-cat="electronics">Electronics</button>
+    <button data-cat="fashion">Fashion</button>
+  </section>
+
+  <section class="products" id="products"></section>
+
+</div>
+
+
+<div class="modal" id="productModal">
+  <div class="modal-box">
+    <span class="close">&times;</span>
+    <img id="modalImg">
+    <h2 id="modalTitle"></h2>
+    <p>Rs. <span id="modalPrice"></span></p>
+    <p id="modalDesc"></p>
+    <button id="addToCartBtn">Add to Cart</button>
+  </div>
+</div>
+
+
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <span class="close" id="closeCart">&times;</span>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-footer">
+    <h3>Rs. <span id="drawerTotal">0</span></h3>
+    <button class="pay-btn">Pay Now</button>
+  </div>
+</div>
+
+
+<div class="modal" id="checkoutModal">
+  <div class="modal-box">
+    <span class="close" id="closeCheckout">&times;</span>
+    <h2>Checkout</h2>
+
+    <input type="text" id="custName" placeholder="Full Name" required>
+    <input type="text" id="custEmail" placeholder="Email" required>
+    <input type="text" id="custPhone" placeholder="Phone Number" required>
+    <textarea id="custAddress" placeholder="Delivery Address" required></textarea>
+
+    <button id="confirmPaymentBtn">Confirm Payment</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2026 Moon & Maple Co. Curated home goods for slow, cozy living.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

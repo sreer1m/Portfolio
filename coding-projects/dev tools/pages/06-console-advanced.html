@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Console Techniques | DevTools Course</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <p class="lesson-number">Lesson 6</p>
+            <h1>🚀 Advanced Console Techniques</h1>
+        </div>
+
+        <div class="card">
+            <h2>$ Shortcuts - Quick Selectors</h2>
+            <p>The Console has special shortcuts that make selecting elements faster than typing out the full commands!</p>
+
+            <h3>$() - The Quick Selector</h3>
+            <p>Instead of typing <code>document.querySelector()</code>, just use <code>$()</code></p>
+            <pre><code>// Old way:
+document.querySelector('h1')
+
+// Quick way:
+$('h1')  // Same result!</code></pre>
+
+            <h3>$$() - Select All Elements</h3>
+            <p>Instead of <code>document.querySelectorAll()</code>, use <code>$$()</code></p>
+            <pre><code>// Get all buttons on the page:
+$$('button')
+
+// Count all paragraphs:
+$$('p').length</code></pre>
+
+            <h3>$0 - The Last Selected Element</h3>
+            <p>$0 always refers to the last element you clicked on in the Elements tab!</p>
+            <pre><code>// Click any element in Elements tab, then type:
+$0  // Shows that element
+
+$0.style.background = 'yellow'  // Highlight it!</code></pre>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🎮 Demo: Selector Shortcuts</div>
+            
+            <div id="demo1" class="demo-box">
+                <h3>Target Box 1</h3>
+                <p class="demo-para">First paragraph</p>
+                <p class="demo-para">Second paragraph</p>
+            </div>
+
+            <div id="demo2" class="demo-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <h3>Target Box 2</h3>
+                <p class="demo-para">Third paragraph</p>
+            </div>
+
+            <div class="instructions">
+                <h4>📋 Try These Commands:</h4>
+                <ol>
+                    <li><code>$('#demo1')</code> - Select first box by ID</li>
+                    <li><code>$$('.demo-para')</code> - Get all demo paragraphs</li>
+                    <li><code>$$('.demo-para').length</code> - Count them</li>
+                    <li>Click on any element in the Elements tab, then type <code>$0</code></li>
+                    <li><code>$0.style.border = "5px solid red"</code> - Style the selected element</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Console Styling - Make Messages Beautiful</h2>
+            <p>You can add CSS styling to your console messages using <code>%c</code>!</p>
+
+            <pre><code>console.log('%cHello!', 'color: blue; font-size: 20px;');
+
+console.log('%cError!', 'color: red; font-weight: bold; background: yellow;');</code></pre>
+
+            <button class="btn-primary" onclick="showStyledConsole()">
+                Show Styled Console Messages
+            </button>
+
+            <div class="tip-box" style="margin-top: 20px;">
+                <h4>💡 Pro Tip</h4>
+                <p>Many websites use styled console messages to show warnings or easter eggs. Check the console on popular websites like Facebook or YouTube!</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Measuring Code Performance</h2>
+            <p>Want to know how fast your code runs? Use console timing functions!</p>
+
+            <h3>console.time() & console.timeEnd()</h3>
+            <pre><code>console.time('My Process');
+// ... do something ...
+for(let i = 0; i < 1000000; i++) {
+    // some work
+}
+console.timeEnd('My Process');
+// Output: "My Process: 12.5ms"</code></pre>
+
+            <button class="btn-success" onclick="measurePerformance()">
+                Measure Loop Performance
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>Grouping Console Messages</h2>
+            <p>Organize related messages together with console.group()!</p>
+
+            <pre><code>console.group('User Information');
+console.log('Name: Alice');
+console.log('Age: 25');
+console.log('City: New York');
+console.groupEnd();
+
+console.group('System Information');
+console.log('OS: Windows');
+console.log('Browser: Chrome');
+console.groupEnd();</code></pre>
+
+            <button class="btn-primary" onclick="showGroupedMessages()">
+                Show Grouped Messages
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>console.count() - Tracking Function Calls</h2>
+            <p>Count how many times something happens:</p>
+
+            <pre><code>function doSomething() {
+    console.count('Function called');
+}
+
+doSomething();  // "Function called: 1"
+doSomething();  // "Function called: 2"
+doSomething();  // "Function called: 3"</code></pre>
+
+            <button class="btn-secondary" onclick="countClicks()">
+                Click Me Multiple Times! (Check Console)
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>console.assert() - Testing Conditions</h2>
+            <p>Only log a message if something is wrong:</p>
+
+            <pre><code>const age = 15;
+console.assert(age >= 18, 'User is not old enough!');
+// Only shows error if age < 18
+
+const isLoggedIn = true;
+console.assert(isLoggedIn, 'User must be logged in!');
+// No error because condition is true</code></pre>
+
+            <button class="btn-primary" onclick="testAssertions()">
+                Test Assertions
+            </button>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🎮 Advanced Demo: Live Data Monitoring</div>
+            
+            <div id="liveData" style="background: #fff; padding: 20px; border-radius: 8px; border: 2px solid var(--primary);">
+                <h3>Live Counter</h3>
+                <p style="font-size: 2em; font-weight: bold; color: var(--primary);" id="counter">0</p>
+                <button class="btn-primary" onclick="startCounter()">Start Counter</button>
+                <button class="btn-danger" onclick="stopCounter()">Stop Counter</button>
+            </div>
+
+            <div class="instructions" style="margin-top: 20px;">
+                <h4>📋 Watch the Console While:</h4>
+                <ol>
+                    <li>Click "Start Counter"</li>
+                    <li>Watch console messages with styled output</li>
+                    <li>See grouped information every 5 counts</li>
+                    <li>Performance measurements appear</li>
+                    <li>Click "Stop Counter" when done</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Copying from Console</h2>
+            <p>You can copy data from the console to your clipboard!</p>
+
+            <pre><code>// Get all links on page
+const links = $$('a').map(a => a.href);
+
+// Copy to clipboard
+copy(links);
+
+// Now paste (Ctrl+V) anywhere!</code></pre>
+
+            <button class="btn-success" onclick="copyPageInfo()">
+                Copy Page Info to Clipboard
+            </button>
+
+            <p style="margin-top: 15px;"><em>After clicking, paste (Ctrl+V) into a text editor to see the copied data!</em></p>
+        </div>
+
+        <div class="card">
+            <h2>Live Expressions</h2>
+            <p>Create live expressions that constantly update! Look for the "eye" icon in the Console.</p>
+
+            <div class="info-box">
+                <h4>How to Create a Live Expression:</h4>
+                <ol>
+                    <li>Open the Console</li>
+                    <li>Click the "eye" icon (👁️) near the top</li>
+                    <li>Type an expression like <code>document.body.scrollTop</code></li>
+                    <li>Scroll the page and watch it update in real-time!</li>
+                </ol>
+            </div>
+
+            <h3>Useful Live Expressions:</h3>
+            <ul>
+                <li><code>window.innerWidth</code> - Watch window width as you resize</li>
+                <li><code>document.body.scrollTop</code> - See scroll position</li>
+                <li><code>$$('button').length</code> - Count elements dynamically</li>
+                <li><code>new Date().toLocaleTimeString()</code> - Live clock</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>✅ Use $() and $$() as shortcuts for selecting elements</li>
+                <li>✅ $0 refers to the last clicked element in Elements tab</li>
+                <li>✅ Style console messages with %c for better visibility</li>
+                <li>✅ Use console.time() to measure performance</li>
+                <li>✅ Group related messages with console.group()</li>
+                <li>✅ Use console.count() to track how many times things happen</li>
+                <li>✅ Use copy() to copy data from console to clipboard</li>
+                <li>✅ Live expressions update automatically - great for monitoring!</li>
+            </ul>
+        </div>
+
+        <div id="navigation"></div>
+    </div>
+
+    <script src="../js/navigation.js"></script>
+    <script>
+        function showStyledConsole() {
+            console.log('%c🎨 Styled Message!', 'color: white; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 10px; border-radius: 5px; font-size: 18px; font-weight: bold;');
+            
+            console.log('%c⚠️ Warning Style', 'color: #f9ab00; font-size: 16px; font-weight: bold;');
+            
+            console.log('%c✅ Success Style', 'color: #0f9d58; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);');
+            
+            console.log('%c❌ Error Style', 'color: white; background: #d93025; padding: 5px 10px; border-radius: 3px; font-weight: bold;');
+        }
+
+        function measurePerformance() {
+            console.time('Loop Performance');
+            
+            let sum = 0;
+            for(let i = 0; i < 1000000; i++) {
+                sum += i;
+            }
+            
+            console.timeEnd('Loop Performance');
+            console.log('Sum calculated:', sum);
+        }
+
+        function showGroupedMessages() {
+            console.group('👤 User Profile');
+            console.log('Name: John Doe');
+            console.log('Email: john@example.com');
+            console.log('Role: Developer');
+            console.groupEnd();
+            
+            console.group('🖥️ System Info');
+            console.log('Browser:', navigator.userAgent.split(' ').pop());
+            console.log('Screen Size:', window.innerWidth + 'x' + window.innerHeight);
+            console.log('Language:', navigator.language);
+            console.groupEnd();
+        }
+
+        let clickCount = 0;
+        function countClicks() {
+            clickCount++;
+            console.count('Button clicked');
+            console.log('Total clicks recorded:', clickCount);
+        }
+
+        function testAssertions() {
+            const age = 15;
+            console.assert(age >= 18, '❌ User age is', age, '- must be 18 or older!');
+            
+            const username = 'John';
+            console.assert(username.length >= 3, '❌ Username too short!');
+            console.log('✅ All valid assertions passed!');
+            
+            const isAdmin = false;
+            console.assert(isAdmin === true, '❌ User does not have admin privileges!');
+        }
+
+        let counterInterval;
+        let counterValue = 0;
+        
+        function startCounter() {
+            counterValue = 0;
+            clearInterval(counterInterval);
+            
+            console.clear();
+            console.log('%c🚀 Counter Started!', 'color: #0f9d58; font-size: 16px; font-weight: bold;');
+            console.time('Counter Running');
+            
+            counterInterval = setInterval(() => {
+                counterValue++;
+                document.getElementById('counter').textContent = counterValue;
+                
+                console.log(`%cCount: ${counterValue}`, 'color: #1a73e8;');
+                console.count('Ticks');
+                
+                if (counterValue % 5 === 0) {
+                    console.group(`📊 Milestone: ${counterValue}`);
+                    console.log('Progress:', counterValue * 10 + '%');
+                    console.log('Timestamp:', new Date().toLocaleTimeString());
+                    console.groupEnd();
+                }
+                
+                if (counterValue >= 20) {
+                    stopCounter();
+                }
+            }, 500);
+        }
+        
+        function stopCounter() {
+            clearInterval(counterInterval);
+            console.timeEnd('Counter Running');
+            console.log('%c⏹️ Counter Stopped!', 'color: #d93025; font-size: 16px; font-weight: bold;');
+            console.log('Final count:', counterValue);
+        }
+
+        function copyPageInfo() {
+            const info = {
+                title: document.title,
+                url: location.href,
+                links: $$('a').length,
+                images: $$('img').length,
+                buttons: $$('button').length,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            const text = JSON.stringify(info, null, 2);
+            
+            // Modern clipboard API
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    console.log('%c✅ Copied to clipboard!', 'color: #0f9d58; font-size: 14px; font-weight: bold;');
+                    console.log('Paste it anywhere with Ctrl+V');
+                    alert('✅ Page info copied to clipboard!\nPaste it into a text editor.');
+                });
+            } else {
+                console.log('Clipboard API not available. Here\'s the data:');
+                console.log(text);
+            }
+        }
+
+        // Welcome message
+        console.log('%c🚀 Advanced Console Techniques', 'color: white; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 5px; font-size: 20px; font-weight: bold;');
+        console.log('%cTry all the demos on this page!', 'color: #5f6368; font-size: 14px;');
+    </script>
+</body>
+</html>

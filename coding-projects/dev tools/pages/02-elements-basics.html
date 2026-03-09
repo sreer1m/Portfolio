@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: Elements Tab - Basics</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <p class="lesson-number">Lesson 2 of 15</p>
+            <h1>📦 Elements Tab: Understanding HTML & the DOM</h1>
+        </div>
+
+        <div class="card">
+            <h2>What Is the Elements Tab?</h2>
+            <p>The <strong>Elements tab</strong> is where you can see and interact with the <strong>HTML structure</strong> of a webpage. It shows you every element that makes up the page headings, paragraphs, images, buttons, and more.</p>
+
+            <div class="info-box">
+                <h4>🎯 What You Can Do:</h4>
+                <ul>
+                    <li>See the HTML code of any webpage</li>
+                    <li>Inspect individual elements</li>
+                    <li>Edit text and HTML in real-time</li>
+                    <li>Add or remove elements</li>
+                    <li>View and modify CSS styles</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Understanding HTML</h2>
+            <p><strong>HTML</strong> (HyperText Markup Language) is the building block of every website. It's like the skeleton that gives a webpage its structure.</p>
+
+            <h3>HTML Elements Explained</h3>
+            <p>HTML uses <strong>tags</strong> to create elements. Tags are wrapped in angle brackets like this:</p>
+            
+            <pre><code>&lt;tagname&gt;Content goes here&lt;/tagname&gt;</code></pre>
+
+            <p>Common HTML elements you'll see:</p>
+            <ul>
+                <li><code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code> - Headings (titles)</li>
+                <li><code>&lt;p&gt;</code> - Paragraphs</li>
+                <li><code>&lt;div&gt;</code> - Container/box (divides content)</li>
+                <li><code>&lt;span&gt;</code> - Inline container</li>
+                <li><code>&lt;a&gt;</code> - Links</li>
+                <li><code>&lt;img&gt;</code> - Images</li>
+                <li><code>&lt;button&gt;</code> - Buttons</li>
+                <li><code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code> - Lists</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>What Is the DOM?</h2>
+            <p>The <strong>DOM</strong> (Document Object Model) is the live, interactive version of HTML in your browser. When you open a webpage:</p>
+            
+            <ol>
+                <li>Browser receives HTML code from the server</li>
+                <li>Browser converts HTML into the DOM (a tree structure)</li>
+                <li>The DOM is what you see in the Elements tab</li>
+                <li>JavaScript can interact with and modify the DOM</li>
+            </ol>
+
+            <div class="info-box">
+                <h4>🔑 Key Difference:</h4>
+                <p><strong>HTML</strong> = The original code written by developers<br>
+                <strong>DOM</strong> = The live, dynamic version in your browser (can change via JavaScript)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Practice: Inspect Elements</h2>
+            
+            <div class="demo-section">
+                <div class="demo-title">🎮 Interactive Demo</div>
+                
+                <h1 id="demo-heading">This Is a Heading</h1>
+                
+                <p id="demo-paragraph">This is a paragraph with some text. Notice how it's styled differently from the heading above.</p>
+                
+                <div id="demo-container" style="background: #4285f4; color: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h3>This Is Inside a Container</h3>
+                    <p>Containers (divs) are used to group related content together.</p>
+                    <button id="demo-button" style="background: white; color: #4285f4; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Click Me!</button>
+                </div>
+
+                <ul id="demo-list" style="background: #f1f3f4; padding: 20px; border-radius: 8px;">
+                    <li>First list item</li>
+                    <li>Second list item</li>
+                    <li>Third list item</li>
+                </ul>
+
+                <div class="instructions">
+                    <h4>📋 Try These Steps:</h4>
+                    <ol>
+                        <li>Open DevTools (press <code>F12</code>)</li>
+                        <li>Make sure you're on the <strong>Elements</strong> tab</li>
+                        <li>Right-click the blue heading above and click "Inspect"</li>
+                        <li>Look at the HTML code: <code>&lt;h1 id="demo-heading"&gt;</code></li>
+                        <li>Click the arrow (▶) next to <code>&lt;div id="demo-container"&gt;</code> to expand it</li>
+                        <li>Notice how elements are nested inside each other (like folders in a file system)</li>
+                        <li>Hover over different elements in the Elements tab and watch them highlight on the page</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Navigating the DOM Tree</h2>
+            <p>The DOM is organized like a tree structure:</p>
+            
+            <pre><code>html
+├── head
+│   ├── title
+│   └── link (CSS)
+└── body
+    ├── div (container)
+    │   ├── h1 (heading)
+    │   └── p (paragraph)
+    └── div (another container)
+        └── button</code></pre>
+
+            <div class="info-box">
+                <h4>🎯 Navigation Tips:</h4>
+                <ul>
+                    <li>Click the <strong>arrow (▶)</strong> to expand/collapse elements</li>
+                    <li>Elements with arrows contain <strong>child elements</strong></li>
+                    <li><strong>Indentation</strong> shows how elements are nested</li>
+                    <li>Hover over code to highlight the element on the page</li>
+                    <li>Use <code>Ctrl+F</code> (or <code>Cmd+F</code>) to search for elements</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Practice: Edit HTML in Real-Time</h2>
+            
+            <div class="demo-section">
+                <div class="demo-title">🎮 Try Editing</div>
+                
+                <h2 id="editable-heading">You Can Edit This Text!</h2>
+                <p id="editable-paragraph">Double-click on this text in DevTools to change it.</p>
+
+                <div class="instructions">
+                    <h4>📋 Edit This Content:</h4>
+                    <ol>
+                        <li>Right-click the heading above and click "Inspect"</li>
+                        <li>In the Elements tab, <strong>double-click</strong> the text "You Can Edit This Text!"</li>
+                        <li>Type something new (e.g., "I Changed This!")</li>
+                        <li>Press <code>Enter</code> to save</li>
+                        <li>Watch the page update instantly!</li>
+                        <li>Try editing the paragraph text too</li>
+                        <li><strong>Refresh the page</strong> to see everything return to normal</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Pro Tip:</h4>
+                <p>You can edit any text on any website this way! This is useful for:</p>
+                <ul>
+                    <li>Testing how different text looks</li>
+                    <li>Taking screenshots with custom text</li>
+                    <li>Experimenting with content changes</li>
+                    <li>Creating funny edits for personal entertainment (remember: only you see the changes!)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Element Attributes</h2>
+            <p>HTML elements can have <strong>attributes</strong> that provide additional information:</p>
+            
+            <pre><code>&lt;img src="photo.jpg" alt="A description" width="300"&gt;
+&lt;a href="https://example.com" target="_blank"&gt;Link&lt;/a&gt;
+&lt;div id="container" class="box"&gt;Content&lt;/div&gt;</code></pre>
+
+            <p>Common attributes:</p>
+            <ul>
+                <li><code>id</code> - Unique identifier for an element</li>
+                <li><code>class</code> - Categories/groups for styling</li>
+                <li><code>src</code> - Source URL for images/scripts</li>
+                <li><code>href</code> - Link destination</li>
+                <li><code>style</code> - Inline CSS styles</li>
+                <li><code>alt</code> - Alternative text for images</li>
+            </ul>
+
+            <div class="demo-section">
+                <img id="demo-image" src="data:image/svg+xml,%3Csvg width='200' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='200' height='150' fill='%234285f4'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='0.3em' fill='white' font-size='20'%3EDemo Image%3C/text%3E%3C/svg%3E" alt="Demo image showing attributes" style="border-radius: 8px;">
+                
+                <div class="instructions">
+                    <h4>📋 Inspect Image Attributes:</h4>
+                    <ol>
+                        <li>Right-click the blue image above and click "Inspect"</li>
+                        <li>Look at the <code>&lt;img&gt;</code> tag in DevTools</li>
+                        <li>Find these attributes: <code>id</code>, <code>src</code>, <code>alt</code>, <code>style</code></li>
+                        <li>Double-click the <code>alt</code> attribute text to edit it</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>The <strong>Elements tab</strong> shows the HTML/DOM structure of a page</li>
+                <li><strong>HTML</strong> uses tags to create elements like headings, paragraphs, containers</li>
+                <li>The <strong>DOM</strong> is the live, interactive version of HTML in your browser</li>
+                <li>Elements are organized in a <strong>tree structure</strong> with parent and child relationships</li>
+                <li>You can <strong>edit any element</strong> by double-clicking it in DevTools</li>
+                <li><strong>Attributes</strong> provide additional information about elements (id, class, src, etc.)</li>
+                <li>All changes are <strong>temporary</strong> and reset when you refresh</li>
+            </ul>
+        </div>
+
+        <div id="navigation"></div>
+    </div>
+
+    <script src="../js/navigation.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const demoButton = document.getElementById('demo-button');
+
+            if (demoButton) {
+                demoButton.addEventListener('click', function () {
+                alert('Button clicked! Check the Console tab to see this event logged.');
+                console.log('Demo button was clicked!');
+            });
+            }
+        });
+        </script>
+
+</body>
+</html>

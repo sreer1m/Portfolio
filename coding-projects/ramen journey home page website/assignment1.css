@@ -1,0 +1,108 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner{
+            width: 100%;
+            height: 100%;
+            background-image:url(./banner.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 5px;
+        }
+        p{
+            font-family: monospace;
+            font-size: x-large;
+            color: white;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #D00110;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            text-align: center;
+            font-family: monospace;
+            font-size: 75px;
+            padding: 40px;
+            color: white;
+        }
+
+        .icon{
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .mainlayout {
+            flex-grow: 1;
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .leftside {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        div.topcontainer {
+            display: flex;
+            gap: 5px;
+            border: 5px solid #F0B2B2;
+            background-color: #8D0000;
+            padding: 5px;
+        }
+        
+        div.mycontainerbtm {
+            border: 5px solid #F0B2B2;
+            background-color: #8D0000;
+            padding: 5px;
+        }
+
+        div.mycontainerright {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 5px solid #F0B2B2; 
+            background-color: #8D0000; 
+            padding: 5px;
+        }
+        
+        .inner-box {
+
+            border: 1px solid #F0B2B2; 
+            background-color: #8D0000; 
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4A373;
+        }
+
+        .inner-box1 {
+
+            border: 1px solid #F0B2B2; 
+            background-color: #8D0000; 
+            height: 895px;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+        }

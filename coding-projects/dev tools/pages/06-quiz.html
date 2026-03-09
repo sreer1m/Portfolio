@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quiz 6 – Advanced Console</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ================== VARIABLES ================== */
+:root {
+  --primary:#1a73e8;
+  --success:#0f9d58;
+  --danger:#d93025;
+  --gray:#5f6368;
+  --bg:#f8f9fa;
+  --white:#fff;
+  --radius:8px;
+}
+
+/* ================== BASE ================== */
+body {
+  font-family: Segoe UI, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 20px;
+  color:#202124;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* ================== HEADER ================== */
+.page-header {
+  background: var(--white);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  margin-bottom: 30px;
+  border-left: 5px solid var(--primary);
+}
+
+.lesson-number {
+  color: var(--gray);
+  text-transform: uppercase;
+  font-size: .85em;
+}
+
+/* ================== QUIZ ================== */
+.quiz-container {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+
+.quiz-question {
+  font-size: 1.3em;
+  margin-bottom: 25px;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quiz-option {
+  border: 2px solid #e0e0e0;
+  padding: 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: .2s;
+}
+
+.quiz-option:hover {
+  border-color: var(--primary);
+  transform: translateX(5px);
+}
+
+.option-letter {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: bold;
+}
+
+.quiz-option.correct {
+  background:#e8f5e9;
+  border-color: var(--success);
+}
+.quiz-option.correct .option-letter { background: var(--success); }
+
+.quiz-option.wrong {
+  background:#ffebee;
+  border-color: var(--danger);
+}
+.quiz-option.wrong .option-letter { background: var(--danger); }
+
+.quiz-option.disabled {
+  pointer-events: none;
+  opacity: .7;
+}
+
+.quiz-feedback {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: var(--radius);
+  display:none;
+}
+
+.quiz-feedback.correct {
+  background:#e8f5e9;
+  border:2px solid var(--success);
+  color:var(--success);
+}
+
+.quiz-feedback.wrong {
+  background:#ffebee;
+  border:2px solid var(--danger);
+  color:var(--danger);
+}
+
+/* ================== NAV ================== */
+.nav-buttons {
+  display:flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  gap: 15px;
+}
+
+.nav-buttons a {
+  text-decoration:none;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  font-weight:600;
+  text-align:center;
+  flex:1;
+}
+
+.btn-secondary {
+  background:#5f6368;
+  color:white;
+}
+
+.btn-primary {
+  background:var(--primary);
+  color:white;
+}
+
+/* ================== PROGRESS ================== */
+.progress-bar {
+  height:8px;
+  background:#e0e0e0;
+  border-radius:4px;
+  overflow:hidden;
+  margin-top:25px;
+}
+
+.progress-fill {
+  height:100%;
+  width:34%;
+  background:var(--success);
+}
+
+/* ================== DEVTOOLS REMINDER ================== */
+#devtools {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff9800;
+  color:white;
+  padding:14px 18px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="page-header">
+  <p class="lesson-number">Quiz 6</p>
+  <h1>Advanced Console Knowledge Check</h1>
+</div>
+
+<div class="quiz-container">
+  <div class="quiz-question">
+    What is the Console mainly used for?
+  </div>
+
+  <div class="quiz-options" data-correct="B">
+    <div class="quiz-option" data-answer="A">
+      <div class="option-letter">A</div> Designing page layouts
+    </div>
+    <div class="quiz-option" data-answer="B">
+      <div class="option-letter">B</div> Running and debugging JavaScript
+    </div>
+    <div class="quiz-option" data-answer="C">
+      <div class="option-letter">C</div> Managing cookies
+    </div>
+    <div class="quiz-option" data-answer="D">
+      <div class="option-letter">D</div> Editing HTML permanently
+    </div>
+  </div>
+
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="nav-buttons">
+  <a href="05-console-basics.html" class="btn-secondary">← Previous: Console Basics</a>
+  <a href="07-sources.html" class="btn-primary">Next: Console Advanced →</a>
+</div>
+
+<div class="progress-bar">
+  <div class="progress-fill"></div>
+</div>
+
+<p style="text-align:center;color:var(--gray)">Progress: 10 of 29 (34%)</p>
+
+</div>
+
+<div id="devtools">💡 Press F12 to open DevTools</div>
+
+<script>
+/* ================== QUIZ LOGIC ================== */
+document.querySelectorAll('.quiz-option').forEach(option=>{
+  option.addEventListener('click',()=>{
+    const quiz = option.closest('.quiz-options');
+    const correct = quiz.dataset.correct;
+    const feedback = document.querySelector('.quiz-feedback');
+
+    quiz.querySelectorAll('.quiz-option').forEach(o=>{
+      o.classList.add('disabled');
+    });
+
+    if(option.dataset.answer===correct){
+      option.classList.add('correct');
+      feedback.className='quiz-feedback correct';
+      feedback.innerHTML='<strong>✅ Correct!</strong><p>The Console lets you run JavaScript, see errors, and experiment safely.</p>';
+    } else {
+      option.classList.add('wrong');
+      feedback.className='quiz-feedback wrong';
+      feedback.innerHTML='<strong>❌ Incorrect!</strong><p>The Console is mainly for running and debugging JavaScript.</p>';
+    }
+
+    feedback.style.display='block';
+  });
+});
+
+/* ================== DEVTOOLS CHECK ================== */
+setTimeout(()=>{
+  const threshold=160;
+  if(window.outerWidth-window.innerWidth<threshold){
+    document.getElementById('devtools').style.display='block';
+  }
+},3000);
+
+document.getElementById('devtools').onclick=function(){
+  this.remove();
+};
+</script>
+
+</body>
+</html>

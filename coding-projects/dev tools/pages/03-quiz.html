@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 3: CSS Styles</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <p class="lesson-number">Quiz 3</p>
+            <h1>🎯 Test Your Knowledge: CSS Styles</h1>
+        </div>
+
+        <div class="card">
+            <h2>Check Your Understanding</h2>
+            <p>Select the best answer for the question below:</p>
+        </div>
+
+        <div id="quiz"></div>
+        <div id="navigation"></div>
+    </div>
+
+    <script>
+        window.quizData = {
+            question: "You inspect an element and see three CSS rules setting 'color'. One says 'color: blue' (from a class), one says 'color: green' (from an ID), and one says 'color: red' (inline style). The text appears red. Why?",
+            options: [
+                "Red was defined last in the CSS file",
+                "Inline styles (element.style) have the highest priority and override everything else",
+                "The browser chose red randomly",
+                "IDs always override classes, and red is from an ID"
+            ],
+            correctAnswer: 1,
+            explanation: "Correct! Inline styles (style='color: red') have the HIGHEST specificity and will override any other CSS rules, including ID selectors and class selectors. This is why you'll often see inline styles at the very top of the Styles panel in DevTools—they take precedence over everything else."
+        };
+    </script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

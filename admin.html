@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #0b1120;
+        --surface: #131c2e;
+        --card: #1a2540;
+        --card2: #1f2d4a;
+        --border: rgba(255,255,255,0.07);
+        --border2: rgba(255,255,255,0.12);
+        --accent: #10b981;
+        --accent-dark: #059669;
+        --accent-light: rgba(16,185,129,0.14);
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --danger: #ef4444;
+        --danger-light: rgba(239,68,68,0.15);
+        --warning: #f59e0b;
+        --blue: #3b82f6;
+        --blue-light: rgba(59,130,246,0.14);
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        margin: 0;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      a { color: inherit; text-decoration: none; }
+
+      /* ===== AUTH ===== */
+      .auth-overlay {
+        position: fixed; inset: 0;
+        background: rgba(7,11,20,0.97);
+        backdrop-filter: blur(12px);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 300; padding: 20px;
+      }
+      .auth-overlay.hidden { display: none; }
+      .auth-card {
+        background: var(--card);
+        border: 1px solid var(--border2);
+        border-radius: 20px;
+        padding: 44px 40px;
+        width: 100%; max-width: 380px;
+        text-align: center;
+        box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+      }
+      .auth-logo {
+        width: 52px; height: 52px; border-radius: 14px;
+        background: linear-gradient(135deg, var(--accent), #0ea5a6);
+        display: grid; place-items: center;
+        margin: 0 auto 20px;
+        font-weight: 800; font-size: 16px; color: #fff;
+        box-shadow: 0 8px 24px rgba(16,185,129,0.35);
+      }
+      .auth-card h2 { margin: 0 0 6px; font-size: 20px; font-weight: 800; }
+      .auth-card p { color: var(--muted); margin: 0 0 28px; font-size: 13px; }
+      .auth-input {
+        width: 100%; padding: 12px 16px;
+        background: var(--card2); border: 1.5px solid var(--border2);
+        border-radius: 10px; color: var(--text);
+        font-size: 14px; font-family: inherit;
+        margin-bottom: 12px; outline: none;
+        transition: border-color 0.2s;
+      }
+      .auth-input:focus { border-color: var(--accent); }
+      .auth-btn {
+        width: 100%; padding: 12px;
+        background: var(--accent); border: none; border-radius: 10px;
+        color: #fff; font-size: 14px; font-weight: 700;
+        font-family: inherit; cursor: pointer;
+        transition: all 0.2s; box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+      }
+      .auth-btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+      .auth-error { display: none; color: var(--danger); font-size: 13px; margin-top: 10px; }
+
+      /* ===== HEADER ===== */
+      .admin-header {
+        position: fixed; top: 0; left: 0; right: 0; height: 60px;
+        background: var(--surface); border-bottom: 1px solid var(--border);
+        display: flex; align-items: center; padding: 0 24px; gap: 12px; z-index: 100;
+      }
+      .header-logo {
+        width: 34px; height: 34px; border-radius: 9px;
+        background: linear-gradient(135deg, var(--accent), #0ea5a6);
+        display: grid; place-items: center;
+        font-weight: 800; font-size: 12px; color: #fff; flex-shrink: 0;
+      }
+      .header-title { font-weight: 700; font-size: 15px; }
+      .header-badge {
+        background: var(--accent-light); color: var(--accent);
+        border: 1px solid rgba(16,185,129,0.25);
+        font-size: 11px; font-weight: 700;
+        padding: 3px 9px; border-radius: 100px; letter-spacing: 0.04em;
+      }
+      .header-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+      .hbtn {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 7px 14px; border-radius: 8px;
+        border: 1px solid var(--border2); background: transparent;
+        color: var(--muted); font-size: 13px; font-weight: 600;
+        font-family: inherit; cursor: pointer; transition: all 0.2s;
+      }
+      .hbtn:hover { color: var(--text); background: var(--card2); }
+      .hbtn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+      .hbtn.primary:hover { background: var(--accent-dark); }
+      .hbtn.danger { color: var(--danger); }
+      .hbtn.danger:hover { background: var(--danger-light); border-color: var(--danger); color: var(--danger); }
+
+      /* ===== TAB NAV ===== */
+      .tab-nav {
+        position: fixed; top: 60px; left: 0; right: 0;
+        height: 50px; background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        display: flex; align-items: stretch;
+        padding: 0 24px; gap: 2px; z-index: 99;
+        overflow-x: auto; scrollbar-width: none;
+      }
+      .tab-nav::-webkit-scrollbar { display: none; }
+      .tab-btn {
+        display: flex; align-items: center; gap: 6px;
+        padding: 0 16px; border: none; background: transparent;
+        color: var(--muted); font-size: 13px; font-weight: 600;
+        font-family: inherit; cursor: pointer; white-space: nowrap;
+        border-bottom: 2px solid transparent;
+        transition: color 0.2s, border-color 0.2s;
+        margin-bottom: -1px;
+      }
+      .tab-btn:hover { color: var(--text); }
+      .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+      /* ===== LAYOUT ===== */
+      .admin-body { padding-top: 110px; min-height: 100vh; }
+
+      /* Tab panels */
+      .tab-panel { display: none; }
+      .tab-panel.active { display: block; }
+
+      /* Two-col layout for list panels */
+      .split-layout {
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        min-height: calc(100vh - 110px);
+      }
+
+      /* ===== FORM PANEL ===== */
+      .form-panel {
+        background: var(--surface); border-right: 1px solid var(--border);
+        padding: 28px 24px;
+        position: sticky; top: 110px;
+        height: calc(100vh - 110px); overflow-y: auto;
+      }
+      .form-panel::-webkit-scrollbar { width: 4px; }
+      .form-panel::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+      /* Single-col content form panel */
+      .content-panel {
+        max-width: 760px; margin: 0 auto;
+        padding: 32px 24px;
+      }
+
+      .section-heading {
+        font-size: 16px; font-weight: 800;
+        margin: 0 0 6px;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .section-heading::before {
+        content: '';
+        width: 4px; height: 18px;
+        background: var(--accent); border-radius: 4px;
+      }
+      .section-sub { font-size: 13px; color: var(--muted); margin: 0 0 24px; }
+
+      .form-grid-2 {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      }
+      .form-group { margin-bottom: 16px; }
+      .form-label {
+        display: flex; justify-content: space-between;
+        font-size: 12px; font-weight: 600; color: var(--muted);
+        margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.05em;
+      }
+      .form-label .req { color: var(--accent); }
+      .field {
+        width: 100%; padding: 11px 14px;
+        background: var(--card2); border: 1.5px solid var(--border);
+        border-radius: 10px; color: var(--text);
+        font-size: 14px; font-family: inherit; outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s; display: block;
+      }
+      .field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(16,185,129,0.12); }
+      .field::placeholder { color: var(--muted); }
+      textarea.field { resize: vertical; min-height: 90px; }
+      select.field { cursor: pointer; }
+      select.field option { background: var(--card); }
+      .field-note { font-size: 11px; color: var(--muted); margin-top: 5px; }
+
+      .form-actions { display: flex; gap: 10px; margin-top: 24px; }
+      .btn-save {
+        flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+        padding: 12px; background: var(--accent);
+        border: none; border-radius: 10px; color: #fff;
+        font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
+        transition: all 0.2s; box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+      }
+      .btn-save:hover { background: var(--accent-dark); transform: translateY(-1px); }
+      .btn-cancel {
+        padding: 11px 20px; background: transparent;
+        border: 1.5px solid var(--border2); border-radius: 10px;
+        color: var(--muted); font-size: 14px; font-weight: 600;
+        font-family: inherit; cursor: pointer; transition: all 0.2s;
+      }
+      .btn-cancel:hover { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
+
+      .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+      /* ===== CARD SECTION ===== */
+      .section-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 16px; padding: 24px; margin-bottom: 20px;
+      }
+      .section-card .section-heading { font-size: 14px; margin-bottom: 4px; }
+
+      /* ===== LIST PANEL ===== */
+      .list-panel { padding: 28px; overflow-y: auto; }
+      .list-panel-header {
+        display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+      }
+      .list-panel-title {
+        font-size: 16px; font-weight: 800;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .list-panel-title::before {
+        content: ''; width: 4px; height: 18px;
+        background: var(--accent); border-radius: 4px;
+      }
+      .count-badge {
+        background: var(--accent-light); color: var(--accent);
+        border: 1px solid rgba(16,185,129,0.25);
+        font-size: 12px; font-weight: 700;
+        padding: 3px 10px; border-radius: 100px;
+      }
+
+      /* ===== ITEM ROWS ===== */
+      .item-list { display: flex; flex-direction: column; gap: 8px; }
+      .item-row {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 14px 16px;
+        display: flex; align-items: center; gap: 12px; transition: all 0.2s;
+      }
+      .item-row:hover { border-color: var(--border2); background: var(--card2); }
+      .item-row.editing { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(16,185,129,0.15); }
+      .item-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+      .item-body { flex: 1; min-width: 0; }
+      .item-title {
+        font-weight: 600; font-size: 14px;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px;
+      }
+      .item-meta { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .item-actions { display: flex; gap: 4px; flex-shrink: 0; }
+      .icon-btn {
+        width: 32px; height: 32px; border-radius: 8px;
+        border: 1px solid var(--border); background: transparent;
+        color: var(--muted); font-size: 13px;
+        display: grid; place-items: center;
+        cursor: pointer; transition: all 0.18s;
+        font-family: inherit; line-height: 1;
+      }
+      .icon-btn:hover { color: var(--text); border-color: var(--border2); background: var(--card2); }
+      .icon-btn.up:hover, .icon-btn.dn:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-light); }
+      .icon-btn.edit:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-light); }
+      .icon-btn.del:hover { color: var(--danger); border-color: var(--danger); background: var(--danger-light); }
+      .icon-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+      /* ===== PILL GRID (hero pills editor) ===== */
+      .pill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+      /* ===== CATEGORY ROWS ===== */
+      .cat-row {
+        display: flex; align-items: center; gap: 10px;
+        padding: 9px 12px; background: var(--card2);
+        border: 1px solid var(--border); border-radius: 9px; margin-bottom: 6px;
+      }
+      .cat-row-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+      .cat-row-body { flex: 1; min-width: 0; }
+      .cat-row-label { font-weight: 600; font-size: 13px; display: block; }
+      .cat-row-count { font-size: 11px; color: var(--muted); }
+      .cat-add-row { display: flex; gap: 8px; margin-top: 10px; }
+      .cat-add-row .field { flex: 1; }
+      .cat-add-btn {
+        flex-shrink: 0; padding: 11px 16px;
+        background: var(--accent); border: none; border-radius: 10px;
+        color: #fff; font-size: 13px; font-weight: 700;
+        font-family: inherit; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+      }
+      .cat-add-btn:hover { background: var(--accent-dark); }
+
+      /* ===== UTIL BTNS ===== */
+      .util-btns { display: flex; gap: 8px; }
+      .util-btn {
+        flex: 1; padding: 9px 12px; background: var(--card2);
+        border: 1px solid var(--border); border-radius: 9px;
+        color: var(--muted); font-size: 12px; font-weight: 600;
+        font-family: inherit; cursor: pointer; transition: all 0.2s; text-align: center;
+      }
+      .util-btn:hover { color: var(--text); border-color: var(--border2); }
+      .util-btn.warn { color: var(--warning); }
+      .util-btn.warn:hover { background: rgba(245,158,11,0.1); border-color: var(--warning); }
+
+      /* ===== EMPTY STATE ===== */
+      .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+      .empty-icon { font-size: 40px; margin-bottom: 12px; }
+
+      /* ===== TOAST ===== */
+      .toast {
+        position: fixed; bottom: 28px; right: 28px;
+        background: var(--card2); border: 1px solid var(--border2);
+        color: var(--text); padding: 12px 20px; border-radius: 12px;
+        font-size: 14px; font-weight: 600;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        transform: translateY(80px); opacity: 0;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 999; pointer-events: none;
+      }
+      .toast.show { transform: none; opacity: 1; }
+      .toast.success { border-color: var(--accent); color: var(--accent); }
+      .toast.error { border-color: var(--danger); color: var(--danger); }
+
+      /* ===== SAVE INDICATOR ===== */
+      .save-indicator {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 12px; color: var(--muted);
+      }
+      .save-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: var(--muted); transition: background 0.3s;
+      }
+      .save-dot.saved { background: var(--accent); }
+      .save-dot.unsaved { background: var(--warning); }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 860px) {
+        .split-layout { grid-template-columns: 1fr; }
+        .form-panel { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+        .list-panel { padding: 20px; }
+        .content-panel { padding: 20px 16px; }
+        .form-grid-2 { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ===== AUTH ===== -->
+    <div class="auth-overlay" id="authOverlay">
+      <div class="auth-card">
+        <div class="auth-logo">&#9998;</div>
+        <h2>Admin Access</h2>
+        <p>Enter the password to manage your portfolio content.</p>
+        <input class="auth-input" type="password" id="passInput" placeholder="Password" autocomplete="current-password">
+        <button class="auth-btn" id="loginBtn">Sign In</button>
+        <div class="auth-error" id="loginError">Incorrect password. Try again.</div>
+      </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="admin-header">
+      <div class="header-logo">&#9998;</div>
+      <div class="header-title">Portfolio Admin</div>
+      <span class="header-badge">ADMIN</span>
+      <div class="save-indicator" id="saveIndicator">
+        <div class="save-dot" id="saveDot"></div>
+        <span id="saveLabel">Saved</span>
+      </div>
+      <div class="header-right">
+        <a class="hbtn primary" href="index.html" target="_blank">&#128065; View Site</a>
+        <a class="hbtn" href="portfolio.html" target="_blank">&#128196; Portfolio</a>
+<button class="hbtn danger" id="logoutBtn">&#128274; Sign Out</button>
+      </div>
+    </header>
+
+    <!-- ===== TABS ===== -->
+    <nav class="tab-nav" id="tabNav">
+      <button class="tab-btn active" data-tab="projects">&#128193; Projects</button>
+      <button class="tab-btn" data-tab="categories">&#127991; Categories</button>
+    </nav>
+
+    <!-- ===== BODY ===== -->
+    <div class="admin-body">
+
+      <!-- ══════════════ PROJECTS TAB ══════════════ -->
+      <div class="tab-panel active" id="tab-projects">
+        <div class="split-layout">
+          <aside class="form-panel">
+            <h2 class="section-heading" id="projFormHeading">Add New Project</h2>
+            <form id="projectForm" novalidate>
+              <div class="form-group">
+                <label class="form-label">Title <span class="req">*</span></label>
+                <input class="field" type="text" id="fieldTitle" maxlength="80" placeholder="e.g. Market Analysis for Startup X" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category <span class="req">*</span></label>
+                <select class="field" id="fieldCategory" required>
+                  <option value="" disabled selected>Select a category...</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Description <span class="req">*</span></label>
+                <textarea class="field" id="fieldDescription" rows="4" maxlength="160" placeholder="Brief description..." required></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Key Result / KPI <span class="req">*</span></label>
+                <input class="field" type="text" id="fieldKpi" maxlength="80" placeholder="e.g. +42% engagement" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Project Link <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+                <input class="field" type="text" id="fieldLink" maxlength="200" placeholder="projects/my-project.html or https://...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Project Image URL <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+                <input class="field" type="text" id="fieldImage" maxlength="300" placeholder="https://... or assets/img/project.jpg">
+                <div class="field-note">Shown in the card header instead of a gradient. Leave blank for no image.</div>
+              </div>
+              <div class="form-actions">
+                <button class="btn-save" type="submit" id="submitBtn">&#43; Add Project</button>
+                <button class="btn-cancel" type="button" id="cancelBtn" style="display:none">Cancel</button>
+              </div>
+            </form>
+
+            <hr class="divider">
+            <div class="util-btns">
+              <button class="util-btn" id="projExportBtn">&#128229; Export JSON</button>
+              <button class="util-btn warn" id="resetBtn">&#8635; Reset Defaults</button>
+            </div>
+          </aside>
+          <main class="list-panel">
+            <div class="list-panel-header">
+              <div class="list-panel-title">Projects <span class="count-badge" id="projectCount">0</span></div>
+            </div>
+            <div class="item-list" id="projectsList"></div>
+          </main>
+        </div>
+      </div>
+
+      <!-- ══════════════ CATEGORIES TAB ══════════════ -->
+      <div class="tab-panel" id="tab-categories">
+        <div class="content-panel">
+          <div class="section-card">
+            <div class="section-heading">Project Categories</div>
+            <p class="section-sub">Categories are used to tag and filter portfolio projects.</p>
+            <div id="categoryList"></div>
+            <div class="cat-add-row">
+              <input class="field" type="text" id="newCatName" placeholder="New category name..." maxlength="40">
+              <button class="cat-add-btn" type="button" id="addCatBtn">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /admin-body -->
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="assets/js/admin.js"></script>
+  </body>
+</html>

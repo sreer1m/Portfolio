@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Application | DevTools Course</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+<div class="page-header">
+<p class="lesson-number">Lesson 11</p>
+<h1>📦 Application Tab</h1>
+</div>
+
+<div class="card">
+<h2>What is the Application Tab?</h2>
+<p>
+The Application tab shows data stored by the browser such as cookies, localStorage, sessionStorage, and cache.
+</p>
+</div>
+
+<div class="demo-section">
+<div class="demo-title">Storage Demo</div>
+
+<button class="btn-primary" onclick="saveData()">Save Data</button>
+<button class="btn-secondary" onclick="clearData()">Clear Data</button>
+
+<p id="storage-status"></p>
+</div>
+
+<div class="instructions">
+<h4>Inspect This</h4>
+<ol>
+<li>Open DevTools and go to Application</li>
+<li>Click Local Storage</li>
+<li>Select this site</li>
+<li>Watch values appear and disappear</li>
+</ol>
+</div>
+
+<div class="info-box">
+<p>
+localStorage stays even after refreshing the page. sessionStorage is cleared when the tab closes.
+</p>
+</div>
+
+<div id="navigation"></div>
+</div>
+
+<script>
+function saveData() {
+  localStorage.setItem("username", "DevTools Learner");
+  document.getElementById("storage-status").textContent =
+    "Data saved to localStorage.";
+}
+
+function clearData() {
+  localStorage.clear();
+  document.getElementById("storage-status").textContent =
+    "localStorage cleared.";
+}
+</script>
+
+<script src="../js/navigation.js"></script>
+</body>
+</html>

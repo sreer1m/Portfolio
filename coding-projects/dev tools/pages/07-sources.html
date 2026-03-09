@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sources Tab | DevTools Course</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <p class="lesson-number">Lesson 7</p>
+            <h1>🔍 Sources Tab: Debugging JavaScript</h1>
+        </div>
+
+        <div class="card">
+            <h2>What is the Sources Tab?</h2>
+            <p>The Sources tab is your debugging headquarters. It's where you can:</p>
+            <ul>
+                <li>See all files that make up the website (HTML, CSS, JavaScript, images)</li>
+                <li>Pause JavaScript code while it's running</li>
+                <li>Step through code line by line</li>
+                <li>Watch variables change in real-time</li>
+                <li>Find bugs and understand how code works</li>
+            </ul>
+
+            <div class="info-box">
+                <h4>💡 Think of it like this:</h4>
+                <p>If you're watching a movie and want to understand a complex scene, you can pause, rewind, and watch frame by frame. The Sources tab lets you do the same thing with JavaScript code!</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Sources Tab Layout</h2>
+            <p>The Sources tab has three main sections:</p>
+            
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">📁</div>
+                    <h3>File Navigator</h3>
+                    <p>Left panel - shows all website files</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <h3>Code Editor</h3>
+                    <p>Middle panel - displays and edits code</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🐛</div>
+                    <h3>Debugger Panel</h3>
+                    <p>Right panel - debugging controls and info</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Breakpoints - Pausing Code Execution</h2>
+            <p>A <strong>breakpoint</strong> is like a pause button for your code. When JavaScript reaches a breakpoint, it stops and waits for you to inspect what's happening.</p>
+
+            <h3>How to Set a Breakpoint:</h3>
+            <ol>
+                <li>Open Sources tab</li>
+                <li>Find a JavaScript file in the file navigator</li>
+                <li>Click on a line number in the code editor</li>
+                <li>A blue marker appears - that's your breakpoint!</li>
+            </ol>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🎮 Interactive Demo: Breakpoint Practice</div>
+            
+            <button class="btn-primary" id="debugBtn">Run Function (Set Breakpoint First!)</button>
+            
+            <div id="output" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; min-height: 50px;"></div>
+
+            <div class="instructions">
+                <h4>📋 Try This:</h4>
+                <ol>
+                    <li>Open the Sources tab</li>
+                    <li>Find this HTML file (07-sources.html) in the file navigator</li>
+                    <li>Look for the function <code>debugDemo()</code> in the script at the bottom</li>
+                    <li>Click on line number next to <code>let result = 0;</code> to set a breakpoint</li>
+                    <li>Click the "Run Function" button above</li>
+                    <li>Code will pause! Now you can step through it</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Stepping Through Code</h2>
+            <p>Once code is paused at a breakpoint, you can control execution:</p>
+
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">▶️</div>
+                    <h3>Resume (F8)</h3>
+                    <p>Continue running until next breakpoint</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⤵️</div>
+                    <h3>Step Over (F10)</h3>
+                    <p>Run current line and move to next</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⬇️</div>
+                    <h3>Step Into (F11)</h3>
+                    <p>Go inside function calls</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⬆️</div>
+                    <h3>Step Out (Shift+F11)</h3>
+                    <p>Finish current function</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Watch Expressions</h2>
+            <p>Watch specific variables or expressions as code runs:</p>
+
+            <ol>
+                <li>While paused at a breakpoint, look at the right panel</li>
+                <li>Find the "Watch" section</li>
+                <li>Click the + button</li>
+                <li>Type a variable name or expression</li>
+                <li>It will update as you step through code!</li>
+            </ol>
+
+            <div class="tip-box">
+                <h4>💡 What to Watch</h4>
+                <p>Good things to watch: variable values, object properties, array lengths, calculation results. Example: if you have a variable <code>total</code>, add it to Watch to see it change!</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Call Stack</h2>
+            <p>The <strong>Call Stack</strong> shows you how you got to the current line of code - which functions called which.</p>
+
+            <p>Think of it like a trail of breadcrumbs showing the path through your code.</p>
+
+            <pre><code>function first() {
+    second();
+}
+
+function second() {
+    third();  // Breakpoint here
+}
+
+function third() {
+    // When paused here, call stack shows:
+    // third() ← second() ← first()
+}</code></pre>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🎮 Complex Demo: Multi-Function Debugging</div>
+            
+            <button class="btn-success" onclick="startComplexDemo()">Run Multi-Function Code</button>
+
+            <div id="complexOutput" style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px;"></div>
+
+            <div class="instructions">
+                <h4>📋 Advanced Exercise:</h4>
+                <ol>
+                    <li>Set a breakpoint inside the <code>processData()</code> function</li>
+                    <li>Click "Run Multi-Function Code"</li>
+                    <li>When paused, look at the Call Stack (right panel)</li>
+                    <li>See how functions called each other</li>
+                    <li>Add variables to Watch: <code>num</code>, <code>result</code></li>
+                    <li>Step through and watch values change</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Scope Variables</h2>
+            <p>While debugging, the Scope panel shows all available variables:</p>
+            <ul>
+                <li><strong>Local:</strong> Variables in the current function</li>
+                <li><strong>Closure:</strong> Variables from parent functions</li>
+                <li><strong>Global:</strong> Variables accessible everywhere (like <code>window</code>)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>✅ Sources tab shows all website files</li>
+                <li>✅ Breakpoints pause code execution</li>
+                <li>✅ Step controls let you walk through code line by line</li>
+                <li>✅ Watch expressions to track specific values</li>
+                <li>✅ Call Stack shows the path through your code</li>
+                <li>✅ Scope shows all available variables at the current point</li>
+                <li>✅ This is the #1 tool for understanding and fixing JavaScript!</li>
+            </ul>
+        </div>
+
+        <div id="navigation"></div>
+    </div>
+
+    <script src="../js/navigation.js"></script>
+    <script>
+        document.getElementById('debugBtn').addEventListener('click', debugDemo);
+
+        function debugDemo() {
+            let result = 0;  // SET BREAKPOINT HERE
+            
+            for (let i = 1; i <= 5; i++) {
+                result += i;  // Watch this line
+                console.log('Current result:', result);
+            }
+            
+            document.getElementById('output').innerHTML = `
+                <h3 style="color: var(--success);">✅ Function Complete!</h3>
+                <p>Final result: ${result}</p>
+                <p>If you set a breakpoint, you could watch this calculate step by step!</p>
+            `;
+        }
+
+        function processData(num) {
+            let doubled = num * 2;  // SET BREAKPOINT HERE
+            let result = doubled + 10;
+            return result;
+        }
+
+        function transformValue(x) {
+            return processData(x) * 3;
+        }
+
+        function startComplexDemo() {
+            console.log('Starting complex demo...');
+            
+            let values = [5, 10, 15];
+            let results = [];
+            
+            values.forEach(val => {
+                let transformed = transformValue(val);  // SET BREAKPOINT HERE TOO
+                results.push(transformed);
+                console.log(`Processed ${val} → ${transformed}`);
+            });
+            
+            document.getElementById('complexOutput').innerHTML = `
+                <h3 style="color: var(--success);">✅ Processing Complete!</h3>
+                <p>Input values: ${values.join(', ')}</p>
+                <p>Output values: ${results.join(', ')}</p>
+                <p style="margin-top: 15px; color: var(--gray);">
+                    <strong>Check the Console for step-by-step logs!</strong><br>
+                    Set breakpoints to pause and inspect the process.
+                </p>
+            `;
+        }
+
+        console.log('%c🔍 Sources Tab Lesson Loaded', 'color: #1a73e8; font-size: 16px; font-weight: bold;');
+        console.log('Set breakpoints in the functions above to practice debugging!');
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 1: Introduction to DevTools</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <p class="lesson-number">Quiz 1</p>
+            <h1>🎯 Test Your Knowledge: Introduction</h1>
+        </div>
+
+        <div class="card">
+            <h2>Check Your Understanding</h2>
+            <p>Select the best answer for the question below:</p>
+        </div>
+
+        <div id="quiz"></div>
+
+        <div id="navigation"></div>
+    </div>
+
+    <script>
+        // Quiz data
+        window.quizData = {
+            question: "When you use Chrome DevTools to edit a website's CSS and change the background color, what happens to the actual website on the server?",
+            options: [
+                "The website on the server is permanently changed for everyone",
+                "The website is changed temporarily for everyone until the next refresh",
+                "Nothing—the changes are only visible on your browser and disappear when you refresh",
+                "The website owner gets a notification about your changes"
+            ],
+            correctAnswer: 2,
+            explanation: "Correct! DevTools only affects what you see in YOUR browser. Changes are completely local and temporary. When you refresh the page, everything returns to the original state. You cannot change the actual website on the server—only your local view of it. This is why DevTools is safe to use and not 'hacking'."
+        };
+    </script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

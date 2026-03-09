@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Box Model</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <p class="lesson-number">Lesson 4 of 15</p>
+            <h1>📦 The Box Model: Understanding Element Spacing</h1>
+        </div>
+
+        <div class="card">
+            <h2>What Is the Box Model?</h2>
+            <p>Every element on a webpage is essentially a <strong>box</strong>. The <strong>Box Model</strong> is a fundamental concept that describes how the size and spacing of these boxes work.</p>
+
+            <p>Each box consists of four layers (from inside to outside):</p>
+            <ol>
+                <li><strong>Content</strong> - The actual text, image, or other content</li>
+                <li><strong>Padding</strong> - Space between content and border (inside the box)</li>
+                <li><strong>Border</strong> - The edge/outline of the box</li>
+                <li><strong>Margin</strong> - Space outside the box (distance from other elements)</li>
+            </ol>
+
+            <div class="info-box">
+                <h4>🎯 Think of it like a picture frame:</h4>
+                <ul>
+                    <li><strong>Content</strong> = The photo/painting</li>
+                    <li><strong>Padding</strong> = The mat board around the photo</li>
+                    <li><strong>Border</strong> = The frame itself</li>
+                    <li><strong>Margin</strong> = The space between this frame and other frames on the wall</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Visual Box Model</h2>
+            
+            <div style="text-align: center; padding: 40px; background: #f5f5f5; border-radius: 8px; margin: 20px 0;">
+                <div style="display: inline-block; background: #ffeb3b; padding: 40px;">
+                    <div style="background: #4caf50; padding: 30px;">
+                        <div style="background: #2196f3; padding: 20px; border: 5px solid #1976d2;">
+                            <div style="background: #fff; padding: 20px; color: #000;">
+                                CONTENT
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <p><span style="background: #ffeb3b; padding: 5px 15px; border-radius: 4px;">Yellow = Margin</span></p>
+                <p><span style="background: #4caf50; padding: 5px 15px; border-radius: 4px; color: white;">Green = Border</span></p>
+                <p><span style="background: #2196f3; padding: 5px 15px; border-radius: 4px; color: white;">Blue = Padding</span></p>
+                <p><span style="background: #fff; padding: 5px 15px; border-radius: 4px; border: 1px solid #000;">White = Content</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Box Model in DevTools</h2>
+            <p>DevTools shows a beautiful visual representation of the box model at the bottom of the Styles panel (or in the Computed tab).</p>
+
+            <div class="demo-section">
+                <div class="demo-title">🎮 Interactive Demo</div>
+                
+                <div id="box-demo" style="
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 40px;
+                    margin: 30px;
+                    border: 10px solid #4a5568;
+                    border-radius: 8px;
+                    text-align: center;
+                    font-size: 18px;
+                ">
+                    Inspect me to see my Box Model!
+                </div>
+
+                <div class="instructions">
+                    <h4>📋 View the Box Model:</h4>
+                    <ol>
+                        <li>Right-click the box above and click "Inspect"</li>
+                        <li>Scroll down in the Styles panel until you see a colorful box diagram</li>
+                        <li>This is the <strong>Box Model Visualizer</strong></li>
+                        <li>You'll see four colored sections showing:
+                            <ul>
+                                <li><span style="color: #f6b26b;">Orange/Tan area</span> = Margin (30px)</li>
+                                <li><span style="color: #93c47d;">Green area</span> = Border (10px)</li>
+                                <li><span style="color: #9fc5e8;">Blue area</span> = Padding (40px)</li>
+                                <li><span style="color: #fff; background: #333; padding: 2px 8px; border-radius: 3px;">White center</span> = Content size</li>
+                            </ul>
+                        </li>
+                        <li>Hover over each section to see the measurements</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Pro Tip:</h4>
+                <p>You can <strong>edit</strong> the box model values directly! Click on any number in the box model diagram to change it. Try changing the margin from 30 to 60 and watch the box move!</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Understanding Each Layer</h2>
+
+            <h3>1. Content</h3>
+            <p>The innermost part—the actual "stuff" (text, images, etc.). Size controlled by <code>width</code> and <code>height</code>.</p>
+
+            <h3>2. Padding</h3>
+            <p><strong>Space INSIDE the element</strong>, between content and border. Makes the element larger.</p>
+            <ul>
+                <li><code>padding: 20px;</code> - All sides get 20px</li>
+                <li><code>padding: 10px 20px;</code> - Top/bottom 10px, left/right 20px</li>
+                <li><code>padding: 10px 20px 30px 40px;</code> - Top, right, bottom, left (clockwise)</li>
+                <li><code>padding-top: 10px;</code> - Just the top</li>
+            </ul>
+
+            <h3>3. Border</h3>
+            <p>The edge of the element. Can have width, style, and color.</p>
+            <ul>
+                <li><code>border: 2px solid black;</code></li>
+                <li><code>border-width: 3px;</code></li>
+                <li><code>border-style: dashed;</code></li>
+                <li><code>border-color: red;</code></li>
+            </ul>
+
+            <h3>4. Margin</h3>
+            <p><strong>Space OUTSIDE the element</strong>, between this element and others. Doesn't change element size.</p>
+            <ul>
+                <li><code>margin: 20px;</code> - All sides</li>
+                <li><code>margin: 10px auto;</code> - Top/bottom 10px, left/right centered</li>
+                <li><code>margin-bottom: 30px;</code> - Just the bottom</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Practice: Padding vs Margin</h2>
+            <p>This is often confusing for beginners. Let's practice to understand the difference!</p>
+
+            <div class="demo-section">
+                <div class="demo-title">🎮 Padding Demo</div>
+                
+                <div id="padding-demo" style="
+                    background: #ff9800;
+                    color: white;
+                    padding: 10px;
+                    border: 3px solid #f57c00;
+                    display: inline-block;
+                ">
+                    This box has padding
+                </div>
+
+                <div class="instructions">
+                    <h4>📋 Experiment with Padding:</h4>
+                    <ol>
+                        <li>Inspect the orange box above</li>
+                        <li>Find <code>padding: 10px;</code> in the Styles panel</li>
+                        <li>Change it to <code>padding: 50px;</code></li>
+                        <li>Notice: The <strong>box gets bigger</strong> and there's more space between the text and the border</li>
+                        <li>The background color extends into the padding area</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="demo-section" style="margin-top: 30px;">
+                <div class="demo-title">🎮 Margin Demo</div>
+                
+                <div id="margin-demo" style="
+                    background: #2196f3;
+                    color: white;
+                    padding: 20px;
+                    margin: 10px;
+                    border: 3px solid #1976d2;
+                    display: inline-block;
+                ">
+                    This box has margin
+                </div>
+
+                <div class="instructions">
+                    <h4>📋 Experiment with Margin:</h4>
+                    <ol>
+                        <li>Inspect the blue box above</li>
+                        <li>Find <code>margin: 10px;</code> in the Styles panel</li>
+                        <li>Change it to <code>margin: 50px;</code></li>
+                        <li>Notice: The box <strong>moves away</strong> from surrounding elements</li>
+                        <li>The background color does <strong>NOT</strong> extend into the margin area</li>
+                        <li>The box itself stays the same size</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>🔑 Key Difference:</h4>
+                <p><strong>Padding</strong> = Space inside, expands the element, includes background color<br>
+                <strong>Margin</strong> = Space outside, pushes other elements away, no background</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Common Box Model Scenarios</h2>
+
+            <h3>Scenario 1: Centering an Element</h3>
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <div style="width: 200px; margin: 0 auto; background: #4285f4; color: white; padding: 20px; text-align: center; border-radius: 4px;">
+                    I'm centered!
+                </div>
+            </div>
+            <p>Code: <code>margin: 0 auto;</code> (top/bottom 0, left/right auto)</p>
+
+            <h3>Scenario 2: Card Spacing</h3>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0;">
+                <div style="flex: 1; min-width: 200px; background: white; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Card with padding for internal spacing
+                </div>
+                <div style="flex: 1; min-width: 200px; background: white; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    Margin between cards for external spacing
+                </div>
+            </div>
+
+            <h3>Scenario 3: Button Spacing</h3>
+            <div style="background: #f5f5f5; padding: 30px; border-radius: 8px; margin: 20px 0;">
+                <button style="background: #4285f4; color: white; border: none; padding: 12px 24px; border-radius: 4px; margin-right: 10px; cursor: pointer;">Button 1</button>
+                <button style="background: #34a853; color: white; border: none; padding: 12px 24px; border-radius: 4px; margin-right: 10px; cursor: pointer;">Button 2</button>
+                <button style="background: #ea4335; color: white; border: none; padding: 12px 24px; border-radius: 4px; cursor: pointer;">Button 3</button>
+            </div>
+            <p>Buttons use <code>padding</code> for size, <code>margin-right</code> for spacing between them</p>
+
+            <div class="instructions">
+                <h4>📋 Inspect These Examples:</h4>
+                <ol>
+                    <li>Right-click each example above and inspect it</li>
+                    <li>Look at the box model diagram for each</li>
+                    <li>Try changing the padding and margin values</li>
+                    <li>See how the layout changes</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Box-Sizing Property</h2>
+            <p>There's an important property that changes how width and height are calculated:</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                <div>
+                    <h4>content-box (default)</h4>
+                    <div style="width: 200px; padding: 20px; border: 10px solid #333; background: #ff9800; color: white; box-sizing: content-box;">
+                        Width: 200px<br>
+                        + Padding: 40px<br>
+                        + Border: 20px<br>
+                        = Total: 260px
+                    </div>
+                    <p style="font-size: 0.9em; margin-top: 10px;">Width applies to content only. Padding and border add to total size.</p>
+                </div>
+                
+                <div>
+                    <h4>border-box</h4>
+                    <div style="width: 200px; padding: 20px; border: 10px solid #333; background: #2196f3; color: white; box-sizing: border-box;">
+                        Total width: 200px<br>
+                        (includes padding<br>
+                        and border)
+                    </div>
+                    <p style="font-size: 0.9em; margin-top: 10px;">Width includes padding and border. Total size stays at 200px.</p>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Pro Tip:</h4>
+                <p>Most modern websites use <code>box-sizing: border-box;</code> because it makes sizing more predictable. You'll often see this in the Computed styles.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Practice Challenge</h2>
+            
+            <div class="demo-section">
+                <div class="demo-title">🎮 Box Model Challenge</div>
+                
+                <div id="challenge-box" style="
+                    width: 300px;
+                    background: #9c27b0;
+                    color: white;
+                    padding: 20px;
+                    margin: 20px auto;
+                    border: 5px solid #7b1fa2;
+                    border-radius: 8px;
+                    text-align: center;
+                ">
+                    Challenge Box
+                </div>
+
+                <div class="instructions">
+                    <h4>📋 Your Mission:</h4>
+                    <p>Use DevTools to modify this box so that:</p>
+                    <ol>
+                        <li>Padding on all sides is 40px</li>
+                        <li>Margin on top and bottom is 50px</li>
+                        <li>Border width is 10px</li>
+                        <li>Border is dashed instead of solid</li>
+                        <li>Border color is yellow</li>
+                    </ol>
+                    <p><strong>Hint:</strong> Right-click the box, inspect it, and modify the CSS properties in the Styles panel or directly in the box model diagram!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>Every element is a <strong>box</strong> with four layers: content, padding, border, margin</li>
+                <li><strong>Padding</strong> = Space inside (between content and border), expands the element</li>
+                <li><strong>Margin</strong> = Space outside (between elements), doesn't expand the element</li>
+                <li><strong>Border</strong> = The edge of the element</li>
+                <li>DevTools shows a visual <strong>box model diagram</strong> at the bottom of the Styles panel</li>
+                <li>You can <strong>edit values directly</strong> in the box model diagram</li>
+                <li><code>box-sizing: border-box</code> makes width/height include padding and border</li>
+                <li>Hover over the box model diagram to see exact measurements</li>
+            </ul>
+        </div>
+
+        <div id="navigation"></div>
+    </div>
+
+    <script src="../js/navigation.js"></script>
+</body>
+</html>
