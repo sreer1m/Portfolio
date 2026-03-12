@@ -43,7 +43,7 @@
     ],
     testimonials: [
       { text: "Very detailed pitch, intresting idea and well thoughtout. Shows empathy in choosing the problem. Good Luck. Necho - Tradeshow", author: 'Mani Vembu', role: 'ZohoCEO - Zoho Division', initials: 'MV' },
-      { text: 'Nice idea. Hope you can integrate with Zoh Meeting / Zoho cliq. Necho - Tradeshow', author: 'Rodrigo Vaca', role: 'Sales - US', initials: 'RV' },
+      { text: 'Nice idea. Hope you can integrate with Zoho Meeting / Zoho cliq. Necho - Tradeshow', author: 'Rodrigo Vaca', role: 'Sales - US', initials: 'RV' },
       { text: 'He remained calm and composed throughout training, quickly grasping new concepts. On calls, he took the time to fully understand the customer’s issue before providing solutions. His call-handling improved noticeably from day one. Punctual, patient, and positive, Sreeram showed strong dedication and potential.', author: 'Arivalagan Anbalagan', role: 'NIC - Support Member Leadership Staff', initials: 'AA' },
       { text: 'Good Job Sree Ram - Keep going!', author: 'Arivalagan Anbalagan', role: 'NIC - Support Member Leadership Staff', initials: 'AA' }
       
