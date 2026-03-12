@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Presentations | Portfolio</title>
+  <meta name="description" content="Presentations and video content by Sree Ram S." />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ── Presentations page specific styles ── */
+
+    /* ── Presentation cards grid ── */
+    .pres-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .pres-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .pres-card:hover {
+      border-color: var(--accent-glow);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    /* Thumbnail area */
+    .pres-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-offset);
+      overflow: hidden;
+    }
+    .pres-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Play button overlay for YouTube cards */
+    .pres-thumb .play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+      transition: background 0.2s;
+    }
+    .pres-card:hover .play-btn { background: rgba(0,0,0,0.5); }
+    .play-btn svg { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+
+    /* Slide thumb (non-YouTube) */
+    .pres-thumb .slide-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+    }
+
+    /* Card body */
+    .pres-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .pres-type-badge {
+      display: inline-block;
+      width: fit-content;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .pres-type-badge.yt { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .pres-type-badge.slides { background: #dbeafe; color: #1d4ed8; border: 1px solid #93c5fd; }
+    .pres-type-badge.pdf { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+    [data-theme="dark"] .pres-type-badge.yt { background: rgba(239,68,68,0.15); color: #f87171; border-color: rgba(239,68,68,0.3); }
+    [data-theme="dark"] .pres-type-badge.slides { background: rgba(59,130,246,0.15); color: #60a5fa; border-color: rgba(59,130,246,0.3); }
+    [data-theme="dark"] .pres-type-badge.pdf { background: rgba(245,158,11,0.15); color: #fbbf24; border-color: rgba(245,158,11,0.3); }
+
+    .pres-title {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-primary);
+      margin: 0 0 8px;
+    }
+    .pres-desc {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0;
+      flex: 1;
+    }
+    .pres-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 14px;
+    }
+    .pres-meta span {
+      background: var(--accent-subtle);
+      color: var(--accent);
+      font-size: 11px; font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--accent-glow);
+    }
+
+    /* Redirect link inside card */
+    .pres-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .pres-link:hover { opacity: 0.75; text-decoration: underline; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 80px 40px;
+      color: var(--text-muted);
+    }
+    .empty-state-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-state h3 {
+      font-family: 'Sora', sans-serif;
+      color: var(--text-secondary);
+      font-size: 20px; margin: 0 0 8px;
+    }
+    .empty-state p { font-size: 15px; max-width: 400px; margin: 0 auto; }
+
+    @media (max-width: 700px) {
+      .pres-grid { grid-template-columns: 1fr; }
+      .preview-iframe { height: 56vw; min-height: 220px; }
+    }
+  </style>
+  <script>(function(){document.documentElement.setAttribute('data-theme','light');})();</script>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <div class="nav">
+        <nav>
+          <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-ghost btn-sm" href="index.html#contact">Contact Me</a>
+          <button class="hamburger" id="menuBtn" aria-label="Open menu">&#9776;</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div style="height:90px"></div>
+
+  <div class="container">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">&#8250;</span>
+      <a href="portfolio.html">Portfolio</a>
+      <span class="sep">&#8250;</span>
+      <strong>Presentations</strong>
+    </nav>
+
+    <div class="page-hero reveal">
+      <div class="section-eyebrow">Presentations & Videos</div>
+      <h1>Presentations</h1>
+      <p>Slide decks, video walkthroughs, and YouTube content. Click any card to open it.</p>
+      <a href="portfolio.html" class="btn btn-ghost" style="margin-top:24px">&#8592; Back to Portfolio</a>
+    </div>
+
+    <!-- ===== CARDS GRID =====
+         HOW TO ADD A YOUTUBE VIDEO:
+           data-type="youtube"
+           data-yt="VIDEO_ID"         ← the part after ?v= in the YouTube URL
+           The thumbnail is auto-loaded from YouTube.
+
+         HOW TO ADD A PRESENTATION (Google Slides / PDF embed / etc.):
+           data-type="slides"  (or "pdf")
+           data-src="FULL_EMBED_URL"
+           Use a custom thumbnail image with data-thumb="path/to/image.jpg"
+    -->
+    <div class="pres-grid" id="presGrid">
+
+  <div class="pres-card" data-type="youtube" data-yt="dfRvVmmfHKA">
+  <div class="pres-thumb">
+    <img src="" alt="thumbnail" loading="lazy">
+    <div class="play-btn">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="32" fill="rgba(255,255,255,0.95)"/>
+        <polygon points="26,20 50,32 26,44" fill="#cc0000"/>
+      </svg>
+    </div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge yt">YouTube</span>
+    <h3 class="pres-title">ZS27 - Larynx 292 - Mission Impossible: Office Edition - 07 Oct 2025</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+  <div class="pres-card" data-type="youtube" data-yt="zKZSqwpYf3c">
+  <div class="pres-thumb">
+    <img src="" alt="thumbnail" loading="lazy">
+    <div class="play-btn">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="32" fill="rgba(255,255,255,0.95)"/>
+        <polygon points="26,20 50,32 26,44" fill="#cc0000"/>
+      </svg>
+    </div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge yt">YouTube</span>
+    <h3 class="pres-title">ZSB27- Barynx - CTRL+DELULU - 30/01/2026</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+
+  <div class="pres-card" data-type="link" data-href="https://zsol.trainercentralsite.in/course/barynx-27#/course/21957000002520289/attend/section/21957000002523088/lesson/21957000002215415">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Video</span>
+    <h3 class="pres-title">Barynx 2</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://zsol.trainercentralsite.in/course/barynx-27#/course/21957000002520289/attend/section/21957000002523088/lesson/21957000002216284">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Video</span>
+    <h3 class="pres-title">Barynx 5</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/publish/ejk434ef6fe66357f4d57bdf63379346b6862">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">DM - SEO</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/c6c04c39bdbe4739f4757b3009de9ea1a61e4">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">Zoho Payments - STP</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://workdrive.zohopublic.in/show/open/oaggo7aebc041dc52402d8857a2d380ad1fc8">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">Necho - Trade Show</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+
+<div class="pres-card" data-type="link" data-href="https://workdrive.zohopublic.in/show/open/oaggo7aebc041dc52402d8857a2d380ad1fc8">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">Necho</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/rl7eb4c74b343526b4d7490292186eefcab37">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">Revolutionizing Meetings</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/e3a7e7f3d6f1cd61a46f68eee9ab18783bfa4">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">DM - Health Care and Trainer Central</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/ydgt6c846de66c05a4bc29cd508417f5be793">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">Necho Pitch Deck</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/vik63f4aa381e6325459b9aabb9b570b065cb">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">TAM SAM SOM - Nothing</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/epuvybd03b6b5b5fd4101b36d41eba105d4f4">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">Zoho Mail Presentation</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/wxamn51d62d784f544ef48d5d41ba72a74266">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">Necho - BMC</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/c6c04f9a446f038ec48f1b2dc3bb869072e44">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">Golden Circle - Marketing</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+
+<div class="pres-card" data-type="link" data-href="https://show.zoho.in/show/open/dnwa874c778d5bb5a45ebb296cec944755e59">
+  <div class="pres-thumb" style="background:linear-gradient(135deg,#e8572a,#f5a623)">
+    <div class="slide-icon"></div>
+  </div>
+  <div class="pres-body">
+    <span class="pres-type-badge slides">Zoho Show</span>
+    <h3 class="pres-title">DDoS</h3>
+    <div class="pres-meta"></div>
+  </div>
+</div>
+
+
+    </div>
+
+    <!-- Empty state (shown when no cards are present) -->
+    <div class="empty-state reveal" id="presEmptyState">
+      <div class="empty-state-icon">&#127910;</div>
+      <h3>Presentations Coming Soon</h3>
+      <p>Slide decks and videos will be listed here. Check back soon.</p>
+    </div>
+
+    <div style="text-align:center;margin:60px 0 40px">
+      <a href="portfolio.html" class="btn btn-ghost">&#8592; Back to All Projects</a>
+    </div>
+
+  </div>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+    <span class="icon-sun">&#9728;&#65039;</span>
+    <span class="icon-moon">&#127769;</span>
+  </button>
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5"/><path d="M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script src="assets/js/main.js" defer></script>
+  <script>
+    (function () {
+      var grid       = document.getElementById('presGrid');
+      var emptyState = document.getElementById('presEmptyState');
+
+      if (!grid) return;
+
+      var cards = grid.querySelectorAll('.pres-card');
+
+      if (cards.length === 0) {
+        if (emptyState) emptyState.style.display = '';
+      } else {
+        if (emptyState) emptyState.style.display = 'none';
+      }
+
+      var linkSvg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+
+      cards.forEach(function (card) {
+        var type = card.getAttribute('data-type') || '';
+        var ytId = card.getAttribute('data-yt')   || '';
+        var src  = card.getAttribute('data-src')  || '';
+        var href = card.getAttribute('data-href') || '';
+        var body = card.querySelector('.pres-body');
+        var url  = '';
+        var label = 'Open link';
+
+        if (type === 'youtube' && ytId) {
+          // Auto-set thumbnail
+          var thumb = card.querySelector('.pres-thumb img');
+          if (thumb) thumb.src = 'https://img.youtube.com/vi/' + ytId + '/maxresdefault.jpg';
+          url   = 'https://www.youtube.com/watch?v=' + ytId;
+          label = 'Watch on YouTube';
+        } else if (type === 'link' && href) {
+          url   = href;
+          label = 'Open link';
+        } else if ((type === 'slides' || type === 'pdf') && src) {
+          url   = src;
+          label = 'Open in new tab';
+        }
+
+        // Clicking card opens URL in new tab
+        if (url) {
+          card.addEventListener('click', function () {
+            window.open(url, '_blank', 'noopener,noreferrer');
+          });
+        }
+
+        // Inject redirect link into card body
+        if (body && url && !card.querySelector('.pres-link')) {
+          var link = document.createElement('a');
+          link.className = 'pres-link';
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.innerHTML = label + ' ' + linkSvg;
+          link.addEventListener('click', function (e) { e.stopPropagation(); });
+          body.appendChild(link);
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>
