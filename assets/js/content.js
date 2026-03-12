@@ -38,8 +38,8 @@
     ],
     experience: [
       { title: 'Zoho Schools of learning', period: 'June 2025', desc: '' },
-      { title: 'Murugappa Polytechnic College', period: '2022\u20142025', desc: 'Diploma in Computer Engineering - Grade: 86%' },
-      { title: 'Smt. Kasturba Nimchand Shah P. Muthyalu Chetty Vivekananda Vidyalaya Junior College', period: '2021\u20132022', desc: 'Grade: 86%' }
+      { title: 'Murugappa Polytechnic College', period: '2022\u20142025', desc: 'Diploma in Computer Engineering - Grade: 94%' },
+      { title: 'Smt. Kasturba Nimchand Shah P. Muthyalu Chetty Vivekananda Vidyalaya Junior College', period: '2021\u20132022', desc: 'SSLC - Grade: 86%' }
     ],
     testimonials: [
       { text: "Very detailed pitch, intresting idea and well thoughtout. Shows empathy in choosing the problem. Good Luck. Necho - Tradeshow", author: 'Mani Vembu', role: 'ZohoCEO - Zoho Division', initials: 'MV' },
