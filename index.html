@@ -336,22 +336,17 @@
           <div class="exp-dot"></div>
           <div class="exp-card">
             <div class="exp-header">
-              <div class="exp-title">NIC - Support &mdash; Zoho</div>
+              <div class="exp-title">NIC - Support</div>
               <div class="exp-period">2025</div>
             </div>
             <div class="exp-role">Technical Support Engineer</div>
             <p style="margin-top:12px; font-size:14px; color:var(--text-secondary); line-height:1.7;">
               As part of the NIC - Support team at Zoho, I handled customer-facing technical support, diagnosing issues and walking clients through solutions. I developed strong call-handling skills, learned to stay composed under pressure, and consistently worked to understand the root of a customer's problem before offering a fix. This role sharpened my ability to communicate technical concepts clearly to non-technical users while collaborating closely with senior team members.
             </p>
-            <div class="exp-carousel" id="expCarousel">
-              <div class="exp-carousel-track" id="expCarouselTrack">
-                <img src="https://hmidvlypfhbjefhcwwkt.supabase.co/storage/v1/object/public/images/d1c39160-75d0-407e-ad0e-d83bebb1278d/67bba98e-456b-4214-8616-0c7cf648915c.png" alt="Experience photo 1" class="exp-carousel-img">
-                <img src="https://hmidvlypfhbjefhcwwkt.supabase.co/storage/v1/object/public/images/d1c39160-75d0-407e-ad0e-d83bebb1278d/06afe2b2-9690-4ba0-af2f-eaac75b911ea.png" alt="Experience photo 2" class="exp-carousel-img">
-                <img src="https://hmidvlypfhbjefhcwwkt.supabase.co/storage/v1/object/public/images/d1c39160-75d0-407e-ad0e-d83bebb1278d/81b668b6-9970-4ee4-8c78-265b07f1afe6.png" alt="Experience photo 3" class="exp-carousel-img">
-              </div>
-              <button class="exp-carousel-btn exp-prev" aria-label="Previous">&#10094;</button>
-              <button class="exp-carousel-btn exp-next" aria-label="Next">&#10095;</button>
-              <div class="exp-carousel-dots" id="expCarouselDots"></div>
+            <div class="exp-photos">
+              <img src="https://hmidvlypfhbjefhcwwkt.supabase.co/storage/v1/object/public/images/d1c39160-75d0-407e-ad0e-d83bebb1278d/67bba98e-456b-4214-8616-0c7cf648915c.png" alt="Experience photo 1" class="exp-photo">
+              <img src="https://hmidvlypfhbjefhcwwkt.supabase.co/storage/v1/object/public/images/d1c39160-75d0-407e-ad0e-d83bebb1278d/06afe2b2-9690-4ba0-af2f-eaac75b911ea.png" alt="Experience photo 2" class="exp-photo">
+              <img src="https://hmidvlypfhbjefhcwwkt.supabase.co/storage/v1/object/public/images/d1c39160-75d0-407e-ad0e-d83bebb1278d/81b668b6-9970-4ee4-8c78-265b07f1afe6.png" alt="Experience photo 3" class="exp-photo">
             </div>
             <!-- Lightbox -->
             <div class="exp-lightbox" id="expLightbox">
@@ -455,42 +450,11 @@
   <script src="assets/js/main.js" defer></script>
   <script>
     (function () {
-      var track = document.getElementById('expCarouselTrack');
-      var dotsWrap = document.getElementById('expCarouselDots');
       var lightbox = document.getElementById('expLightbox');
       var lbImg = document.getElementById('expLightboxImg');
       var lbClose = document.getElementById('expLightboxClose');
-      if (!track) return;
-      var imgs = track.querySelectorAll('.exp-carousel-img');
-      var current = 0;
-
-      // Build dots
-      imgs.forEach(function (_, i) {
-        var d = document.createElement('span');
-        d.className = 'exp-dot' + (i === 0 ? ' active' : '');
-        d.addEventListener('click', function () { goTo(i); });
-        dotsWrap.appendChild(d);
-      });
-
-      function goTo(n) {
-        current = (n + imgs.length) % imgs.length;
-        track.style.transform = 'translateX(-' + current * 100 + '%)';
-        dotsWrap.querySelectorAll('.exp-dot').forEach(function (d, i) {
-          d.classList.toggle('active', i === current);
-        });
-      }
-
-      // Auto-advance every 3s, pause on hover
-      var timer = setInterval(function () { goTo(current + 1); }, 3000);
-      var carousel = document.getElementById('expCarousel');
-      carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
-      carousel.addEventListener('mouseleave', function () { timer = setInterval(function () { goTo(current + 1); }, 3000); });
-
-      document.querySelector('.exp-prev').addEventListener('click', function () { goTo(current - 1); });
-      document.querySelector('.exp-next').addEventListener('click', function () { goTo(current + 1); });
-
-      // Click to expand
-      imgs.forEach(function (img) {
+      if (!lightbox) return;
+      document.querySelectorAll('.exp-photo').forEach(function (img) {
         img.addEventListener('click', function () {
           lbImg.src = img.src;
           lbImg.alt = img.alt;
@@ -498,11 +462,9 @@
           document.body.style.overflow = 'hidden';
         });
       });
-
       lbClose.addEventListener('click', closeLb);
       lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLb(); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
-
       function closeLb() {
         lightbox.classList.remove('open');
         document.body.style.overflow = '';
