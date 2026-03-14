@@ -480,6 +480,12 @@
         });
       }
 
+      // Auto-advance every 3s, pause on hover
+      var timer = setInterval(function () { goTo(current + 1); }, 3000);
+      var carousel = document.getElementById('expCarousel');
+      carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+      carousel.addEventListener('mouseleave', function () { timer = setInterval(function () { goTo(current + 1); }, 3000); });
+
       document.querySelector('.exp-prev').addEventListener('click', function () { goTo(current - 1); });
       document.querySelector('.exp-next').addEventListener('click', function () { goTo(current + 1); });
 

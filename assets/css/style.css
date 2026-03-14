@@ -3753,6 +3753,7 @@ body {
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-card);
+  max-width: 480px;
 }
 
 .exp-carousel-track {
